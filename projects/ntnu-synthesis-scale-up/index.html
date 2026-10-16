@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t==='light'||t==='dark')d.setAttribute('data-theme',t);d.classList.add('js');if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.__siteReady)d.classList.remove('motion')},2500)}})();</script>
+<title>Making the catalyst synthesis safe to scale – Ayush Suryawanshi</title>
+<meta name="description" content="Catalyst synthesis rework at NTNU, Norway, by Ayush Suryawanshi: three batches of Bi-modified Pt/C, a borohydride ignition during filtration, and a safer aqueous route.">
+<meta name="author" content="Ayush Suryawanshi">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2315191F%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2227%22%20fill%3D%22%23F7F6F2%22%20text-anchor%3D%22middle%22%3EAS%3C%2Ftext%3E%3C%2Fsvg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ayush Suryawanshi">
+<meta property="og:title" content="Making the catalyst synthesis safe to scale – Ayush Suryawanshi">
+<meta property="og:description" content="Catalyst synthesis rework at NTNU, Norway, by Ayush Suryawanshi: three batches of Bi-modified Pt/C, a borohydride ignition during filtration, and a safer aqueous route.">
+<meta property="og:url" content="https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/">
+<meta property="og:image" content="https://suryawanshi-ayush.github.io/images/ayush-suryawanshi-photo-baa04525.jpg">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Making the catalyst synthesis safe to scale – Ayush Suryawanshi">
+<meta name="twitter:description" content="Catalyst synthesis rework at NTNU, Norway, by Ayush Suryawanshi: three batches of Bi-modified Pt/C, a borohydride ignition during filtration, and a safer aqueous route.">
+<meta name="twitter:image" content="https://suryawanshi-ayush.github.io/images/ayush-suryawanshi-photo-baa04525.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.d3fcf0df.css">
+<script src="/assets/site.0b4c440b.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://suryawanshi-ayush.github.io/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://suryawanshi-ayush.github.io/projects/"},{"@type":"ListItem","position":3,"name":"Making the catalyst synthesis safe to scale","item":"https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/"}]},{"@type":"CreativeWork","name":"Making the catalyst synthesis safe to scale","headline":"Making the catalyst synthesis safe to scale","description":"Catalyst synthesis rework at NTNU, Norway, by Ayush Suryawanshi: three batches of Bi-modified Pt/C, a borohydride ignition during filtration, and a safer aqueous route.","url":"https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/","author":{"@id":"https://suryawanshi-ayush.github.io/#person"},"inLanguage":"en","keywords":"Catalyst synthesis, Process safety, SEM"}]}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="/" aria-label="Ayush Suryawanshi, home"><span class="mono-mark" aria-hidden="true">AS</span><span class="brand-name">Ayush Suryawanshi</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span class="burger" aria-hidden="true"></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul><li><a href="/projects/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/cv/">CV</a></li><li><a href="#contact">Contact</a></li></ul>
+    </nav>
+    <button class="theme-btn" type="button" aria-label="Switch colour theme"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.6 6.6 0 0 0 10.7 10.7z"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  </div>
+</header>
+<main id="main">
+
+<article class="project">
+<header class="page-head proj-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Making the catalyst synthesis safe to scale</span></nav>
+    <p class="eyebrow">Experimental research · KinCat group, NTNU</p>
+    <h1>Making the catalyst synthesis safe to scale</h1>
+    <p class="page-lede">Three batches of Bi-modified Pt/C, one ignition on the filter, and a cleaner aqueous route.</p>
+    <dl class="proj-meta">
+      <div><dt>When</dt><dd>Aug – Dec 2025</dd></div>
+      <div><dt>Where</dt><dd>KinCat group, Department of Chemical Engineering, NTNU, Trondheim</dd></div>
+      <div><dt>Type</dt><dd>Lab research, part of the thesis</dd></div><div><dt>Supervisor at NTNU</dt><dd>Prof. Edd Anders Blekkan</dd></div><div><dt>Funding</dt><dd>UTFORSK mobility scholarship</dd></div><div><dt>Methods</dt><dd>Aqueous chemical reduction, filtration and drying, SEM</dd></div>
+    </dl>
+  </div>
+</header>
+<div class="wrap"><figure class="fig proj-hero"><img src="/images/w/ayush-sem-workstation-ntnu-cleanroom-640.webp" srcset="/images/w/ayush-sem-workstation-ntnu-cleanroom-640.webp 640w, /images/w/ayush-sem-workstation-ntnu-cleanroom-1280.webp 1280w" sizes="(min-width: 1200px) 1160px, 100vw" width="1600" height="739" alt="Ayush in cleanroom gear at an SEM workstation" loading="lazy" decoding="async" data-zoom="/images/w/ayush-sem-workstation-ntnu-cleanroom-1280.webp"><figcaption>At the SEM in the NTNU cleanroom, checking a batch.</figcaption></figure></div>
+<div class="wrap proj-layout">
+  <aside class="toc" aria-label="On this page">
+    <p class="eyebrow">On this page</p>
+    <ol><li><a href="#glance">At a glance</a></li><li><a href="#question">The problem</a></li><li><a href="#approach">Batch by batch</a></li><li><a href="#results">What the material looked like</a></li><li><a href="#learned">What I took from it</a></li></ol>
+  </aside>
+  <div class="prose">
+    <section id="glance" class="glance" aria-labelledby="glance-h">
+      <h2 id="glance-h" class="sr-only">At a glance</h2>
+      <dl><div><dt>Problem</dt><dd>The literature procedure lost most of the catalyst during filtration, and scaling it up made it unsafe.</dd></div><div><dt>What I did</dt><dd>Ran three batches and changed the route after each one.</dd></div><div><dt>Key result</dt><dd>An aqueous borohydride step with less reductant removed the ignition risk and gave the highest yield, about 220 mg.</dd></div><div><dt>Limits</dt><dd>Yield and morphology were the checks here; activity was tested on the thesis series.</dd></div></dl>
+    </section>
+    <section id="question" aria-labelledby="question-h"><h2 id="question-h">The problem</h2>
+<p>The thesis needed one synthesis route I could rely on, and the first route I tried did not give it. I ran the Bi-modified Pt/C synthesis in three batches in the KinCat group at NTNU and changed it after each one.</p></section>
+<section id="approach" aria-labelledby="approach-h"><h2 id="approach-h">Batch by batch</h2>
+<ol class="steps">
+  <li><h3>Batch 1: following the paper</h3><p>The literature procedure recovered very little catalyst. Most of the loss happened during filtration, and SEM showed irregular, sheet-like features that pointed to contamination during recovery.</p></li>
+  <li><h3>Batch 2: scaling up</h3><p>A larger batch raised the yield, but leftover sodium borohydride ignited on the filter.</p></li>
+  <li><h3>Batch 3: changing the route</h3><p>I replaced the solvent-based reduction with an aqueous borohydride step, used less reductant and changed the filtration. There was no ignition, and the batch gave the highest recovered mass, about 220 mg.</p></li>
+</ol>
+<div class="fig-row">
+<figure class="fig tall"><img src="/images/w/catalyst-slurry-stirring-on-a-hotplate-554.webp" width="554" height="1200" alt="A flask of black catalyst slurry on a magnetic stirrer" loading="lazy" decoding="async" data-zoom="/images/w/catalyst-slurry-stirring-on-a-hotplate-554.webp"><figcaption>Adsorbing Bi³⁺ onto Pt/C under stirring, the first step of every batch.</figcaption></figure>
+<figure class="fig tall"><img src="/images/w/ayush-at-a-fume-hood-in-the-ntnu-554.webp" width="554" height="1200" alt="Ayush working at a fume hood in the NTNU lab" loading="lazy" decoding="async" data-zoom="/images/w/ayush-at-a-fume-hood-in-the-ntnu-554.webp"><figcaption>Working through the synthesis at the fume hood in the NTNU lab.</figcaption></figure>
+</div></section>
+<section id="results" aria-labelledby="results-h"><h2 id="results-h">What the material looked like</h2>
+<p>SEM of the later batches showed densely packed nanoclusters with a rough, raspberry-like surface and metal particles spread evenly over the carbon support, without the irregular features of the first batch.</p>
+<figure class="fig "><img src="/images/w/sem-micrograph-of-agglomerated-catalyst-nanoclusters-640.webp" srcset="/images/w/sem-micrograph-of-agglomerated-catalyst-nanoclusters-640.webp 640w, /images/w/sem-micrograph-of-agglomerated-catalyst-nanoclusters-749.webp 749w" sizes="(min-width: 1100px) 720px, 100vw" width="749" height="549" alt="SEM micrograph of agglomerated catalyst nanoclusters" loading="lazy" decoding="async" data-zoom="/images/w/sem-micrograph-of-agglomerated-catalyst-nanoclusters-749.webp"><figcaption>A later batch at 25,000×: nanoclusters with a rough, raspberry-like surface and none of the sheet-like contamination seen in the first batch.</figcaption></figure>
+<figure class="fig "><img src="/images/w/two-high-magnification-sem-micrographs-640.webp" srcset="/images/w/two-high-magnification-sem-micrographs-640.webp 640w, /images/w/two-high-magnification-sem-micrographs-1280.webp 1280w" sizes="(min-width: 1100px) 720px, 100vw" width="1351" height="563" alt="Two high-magnification SEM micrographs" loading="lazy" decoding="async" data-zoom="/images/w/two-high-magnification-sem-micrographs-1280.webp"><figcaption>Batch 3 at 450,000× and 250,000×. The bright specks are metal particles spread evenly over the carbon support, the sign of a usable catalyst.</figcaption></figure></section>
+<section id="learned" aria-labelledby="learned-h"><h2 id="learned-h">What I took from it</h2>
+<p>Procedures that work at milligram scale can behave differently when scaled, and safety problems often show up in the handling steps rather than the reaction itself. The thesis catalyst series was made with the fully aqueous route.</p></section>
+    <nav class="pager" aria-label="More projects">
+      <a class="prev" href="/projects/thesis-bi-pt-formic-acid/"><span class="eyebrow">Previous</span>Keeping platinum clean in formic acid fuel cells</a>
+      <a class="next" href="/projects/dft-orr-pt13/"><span class="eyebrow">Next</span>Oxygen reduction on a 13-atom platinum cluster</a>
+    </nav>
+  </div>
+</div>
+</article>
+</main>
+<footer class="site-foot" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="contact-title">Let’s talk about catalysts, cells or process design</h2>
+        <p class="contact-lede">Questions about a project, a collaboration, or something you read here are all welcome. Email is the quickest way to reach me.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:ayush.suryawanshi0803@gmail.com">Email me <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+        <a class="btn btn-ghost" href="/Ayush_CV_revised.pdf" download="Ayush_CV.pdf">Download CV (PDF) <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg></a>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:ayush.suryawanshi0803@gmail.com">ayush.suryawanshi0803@gmail.com</a></li>
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/ayush-suryawanshi" rel="me noopener" target="_blank">linkedin.com/in/ayush-suryawanshi</a></li>
+          <li><span class="k">Based in</span><span>Ahmedabad, India</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-row">
+      <p>© 2026 Ayush Suryawanshi. Last updated October 2026.</p>
+      <p><a href="/">Home</a> · <a href="/projects/">Work</a> · <a href="/about/">About</a> · <a href="/cv/">CV</a></p>
+    </div>
+  </div>
+</footer>
+<dialog class="lightbox" aria-label="Enlarged image">
+  <form method="dialog"><button class="lb-close" aria-label="Close">Close <kbd>Esc</kbd></button></form>
+  <img alt="">
+  <p class="lb-cap"></p>
+  <a class="lb-full" href="#" target="_blank" rel="noopener">Open full size in a new tab</a>
+  <div class="lb-nav"><button type="button" data-step="-1" aria-label="Previous image">←</button><button type="button" data-step="1" aria-label="Next image">→</button></div>
+</dialog>
+</body>
+</html>

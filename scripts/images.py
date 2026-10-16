@@ -1,0 +1,48 @@
+"""Regenerate responsive WebP copies of every photo in images/ and src/images.json.
+
+Originals stay at images/<name>.jpg (old links keep working). The pages use
+images/w/<short-name>-<width>.webp at 640 px and 1280 px (or the original width
+if smaller), plus the original size for width/height attributes.
+
+Usage: python3 scripts/images.py
+"""
+import json
+from pathlib import Path
+
+from PIL import Image, ImageOps
+
+ROOT = Path(__file__).resolve().parent.parent
+IMG = ROOT / "images"
+OUT = IMG / "w"
+# Clearer public names for files whose original names carry no meaning.
+RENAME = {
+    "ayush-suryawanshi-photo-7d467c05": "half-cell-electrodes-close-up",
+    "ayush-suryawanshi-photo-baa04525": "ayush-sem-workstation-ntnu-cleanroom",
+    "ayush-suryawanshi-photo-4972ceff": "dft-orr-pt13-step-energies-figure",
+    "ayush-suryawanshi-photo-5ee7ac61": "sncr-team-poster-treforedlingsforum-oslo",
+}
+
+
+def main():
+    OUT.mkdir(exist_ok=True)
+    meta = {}
+    for src in sorted(IMG.glob("*.jpg")):
+        stem = src.stem
+        name = RENAME.get(stem, stem.replace("ayush-suryawanshi-", ""))
+        im = ImageOps.exif_transpose(Image.open(src)).convert("RGB")
+        w, h = im.size
+        widths = sorted({min(640, w), min(1280, w)} | ({w} if 640 < w < 1280 else set()))
+        widths = [x for x in widths if x == w or x in (640, 1280)]
+        if 'poster' in stem and w > 1280:
+            widths.append(w)  # posters need full resolution to be readable when enlarged
+        for ww in widths:
+            target = OUT / f"{name}-{ww}.webp"
+            if not target.exists():
+                im.resize((ww, round(h * ww / w)), Image.LANCZOS).save(target, "WEBP", quality=80, method=6)
+        meta[src.name] = {"name": name, "w": w, "h": h, "widths": widths}
+    (ROOT / "src" / "images.json").write_text(json.dumps(meta, indent=1) + "\n")
+    print(f"{len(meta)} images")
+
+
+if __name__ == "__main__":
+    main()

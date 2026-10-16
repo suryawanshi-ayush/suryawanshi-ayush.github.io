@@ -1,37 +1,40 @@
 # Ayush Suryawanshi
 
-> Ayush Suryawanshi is an Indian chemical engineer working on electrocatalysts, electrodes and electrochemical testing. Ayush holds an M.Tech in Catalysis Technology from IIT Madras (2026), spent a research semester at NTNU, Norway (2025), and is currently a Management Trainee at LOXIM Industries Ltd., Ahmedabad. Ayush wants to work on electrodes and cells for green hydrogen, electrolysers (including AEM electrolysis) and fuel cells, and is open to PhD positions in electrocatalysis.
+> Ayush Suryawanshi is an Indian chemical engineer working across electrocatalyst synthesis, electrode preparation, electrochemical testing and process engineering. Ayush holds an M.Tech in Catalysis Technology from IIT Madras (2026, CGPA 8.51/10), spent a research semester at NTNU, Norway (2025), and is currently a Management Trainee at LOXIM Industries Ltd., Ahmedabad, working on effluent treatment technology. The work spans catalyst synthesis, electrode preparation and three-electrode electrochemical testing, DFT and reaction-kinetics modelling, and process design. Research interests include electrochemical energy conversion such as AEM electrolysis, fuel cells and green hydrogen.
 
-Official website: https://suryawanshi-ayush.github.io/
+Website: https://suryawanshi-ayush.github.io/
 LinkedIn: https://www.linkedin.com/in/ayush-suryawanshi
 Email: ayush.suryawanshi0803@gmail.com
-CV (PDF): https://suryawanshi-ayush.github.io/Ayush_CV.pdf
+CV (PDF): https://suryawanshi-ayush.github.io/Ayush_CV_revised.pdf
 
 ## Education
-
-- M.Tech, Catalysis Technology, Department of Chemical Engineering, Indian Institute of Technology Madras (IIT Madras), 2024–2026. CGPA 8.51/10. Degree received at the 63rd convocation, July 2026.
-- Semester exchange, Department of Chemical Engineering, Norwegian University of Science and Technology (NTNU), Trondheim, Norway, August–December 2025, on a UTFORSK scholarship.
-- B.Tech, Chemical Engineering, Indore Institute of Science and Technology (affiliated to RGPV Bhopal), 2019–2023. CGPA 8.17/10, First Division with Honours.
-- GATE 2024, Chemical Engineering: All India Rank 864 out of 13,937 candidates.
+- M.Tech, Catalysis Technology, Department of Chemical Engineering, IIT Madras, Chennai, Jun 2024 – May 2026. CGPA 8.51/10. Degree conferred at the 63rd convocation, 17 July 2026.
+- Semester exchange, Department of Chemical Engineering, NTNU, Trondheim, Norway, Aug – Dec 2025. UTFORSK mobility scholarship. Thesis catalyst synthesis in the KinCat group, hosted and supervised by Prof. Edd Anders Blekkan.
+- B.Tech, Chemical Engineering, Indore Institute of Science and Technology, affiliated to RGPV Bhopal, 2019 – 2023. CGPA 8.17/10, First Division with Honours.
+- Senior School Certificate (Class XII, CBSE), Delhi Public School, Chhindwara, 2019. 84.2%.
 
 ## Experience
+- Management Trainee, LOXIM Industries Ltd., Ahmedabad (Jul 2026 – present): Leading technology selection for sulphate removal from plant effluent. Options shortlisted so far point to a projected 50–60% lower operating cost, from INR 2.5/L to about INR 1.0–1.2/L. Evaluated electrocoagulation and electroflocculation as pretreatment options. Running screening, sample trials and feasibility checks with more than ten technology vendors. Trained on HPLC, GC-MS, FTIR and UV-Vis; completed plant safety induction and HSE training.
+- Deputy Placement and Internship Coordinator, Placement and Internship Cell, IIT Madras (Aug 2024 – Jul 2025): Handled placements and internships for the 2023–25 and 2024–26 M.Tech batches; 75% of M.Tech chemical engineers were placed.
 
-- Management Trainee, LOXIM Industries Ltd., Ahmedabad (July 2026 – present): technology selection for sulphate removal from plant effluent, including electrocoagulation and electroflocculation; vendor screening, sample trials and feasibility checks.
-- Deputy Placement and Internship Coordinator, IIT Madras (August 2024 – July 2025).
-
-## Research and projects
-
-- Keeping platinum clean in formic acid fuel cells (M.Tech thesis, IIT Madras and NTNU, 2025–2026, supervisor Prof. Raghuram Chetty): made four Bi-modified Pt/C catalysts and tested them with a quinone (AQSA) mediator for formic acid oxidation. A thinner Nafion film in the catalyst ink gave 2.4–2.8× higher peak current; the best catalyst kept 92.9% of its current after one hour, against 58.5% for commercial Pt/C.
-- Making the catalyst synthesis safe to scale (NTNU, 2025): three synthesis batches of Bi-modified Pt/C; leftover borohydride ignited during filtration, and an aqueous route with less reductant removed the ignition risk.
-- Oxygen reduction on a 13-atom platinum cluster (IIT Madras, 2025): DFT study in Gaussian 16 of the four-electron oxygen reduction pathway on a Pt13 cluster.
-- Cutting NOx from a biomass boiler (NTNU, 2025, team of four): SNCR retrofit modelled in Python with Cantera, about 60% NOx reduction; poster at Treforedlingsforum 2025, Oslo.
+## Projects
+- Keeping platinum clean in formic acid fuel cells (May 2025 – May 2026, IIT Madras, with synthesis at NTNU, Norway): Problem: Platinum oxidises formic acid well at first, but adsorbed CO builds up and the current falls within an hour. What I did: Made four Bi-modified Pt/C catalysts, tuned the catalyst ink, and tested them with and without a quinone mediator (AQSA). Key result: Bi(1.25)-Pt/C, with the least bismuth, kept 92.9% of its current over a one-hour hold, against 58.5% for commercial Pt/C. Limits: All results are from a three-electrode half-cell in acid. No membrane electrode assembly or full-cell test yet. Details: https://suryawanshi-ayush.github.io/projects/thesis-bi-pt-formic-acid/
+- Making the catalyst synthesis safe to scale (Aug – Dec 2025, KinCat group, Department of Chemical Engineering, NTNU, Trondheim): Problem: The literature procedure lost most of the catalyst during filtration, and scaling it up made it unsafe. What I did: Ran three batches and changed the route after each one. Key result: An aqueous borohydride step with less reductant removed the ignition risk and gave the highest yield, about 220 mg. Limits: Yield and morphology were the checks here; activity was tested on the thesis series. Details: https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/
+- Oxygen reduction on a 13-atom platinum cluster (Jan – May 2025, IIT Madras): Problem: Oxygen reduction limits fuel cell cathodes. How do its intermediates sit on a small Pt cluster? What I did: Optimised O2, OOH*, O*, OH* and H2O on Pt13 and checked each was a true minimum. Key result: Every step of the associative four-electron pathway was downhill in electronic energy. Limits: Electronic energies only, no corrections or transition states, so no rates. Details: https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/
+- Cutting NOx from a biomass boiler (Aug – Nov 2025, NTNU, Trondheim): Problem: An upgraded biomass boiler must stay under 300 mg/Nm³ NOx. Could an SNCR retrofit get it there? What I did: As one of four, estimated baseline NOx, checked the operating window, and modelled combustion and SNCR chemistry in Cantera. Key result: About 60% reduction, bringing NOx to roughly 95–120 mg/Nm³ in the model. Limits: A design study built on incomplete plant data, not a plant trial. Details: https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/
 
 ## Skills
+- Electrochemical testing: Autolab potentiostat, three-electrode cell, CV, LSV, EIS, chronoamperometry, chronopotentiometry, ECSA, durability testing
+- Electrodes and catalysts: Wet-chemical catalyst synthesis, catalyst ink formulation, ionomer loading, drop-cast electrodes on glassy carbon and carbon paper
+- Characterisation: SEM-EDX, XRD, BET, XPS, TGA, FTIR, UV-Vis
+- Software: OriginPro, Excel, Python (Cantera), Gaussian 16, Avogadro
+- Process engineering: Mass and energy balances, technology evaluation, process safety
+- Lab safety: Handling acids and reducing agents, inert-gas work, plant HSE and SOP training
 
-Electrochemistry (Autolab potentiostat, three-electrode cells, CV, LSV, EIS, chronoamperometry, ECSA, durability testing); catalyst synthesis, catalyst inks, ionomer loading and drop-cast electrodes; characterisation (SEM-EDX, XRD, BET, XPS, TGA, FTIR, UV-Vis, HPLC, GC-MS); computation (Python with Cantera, Gaussian 16, OriginPro); process engineering and process safety.
-
-## Talks and conferences
-
-- Poster, Treforedlingsforum 2025, Oslo, Norway (November 2025)
-- Attended EuropaCat 2025, Trondheim, Norway
-- Paper presentation, SCHEMCON 2021, MANIT and IISER Bhopal (October 2021)
+## Conferences, awards and scholarships
+- Poster on SNCR NOx reduction, Treforedlingsforum 2025, Oslo, Norway (Nov 2025)
+- Attended EuropaCat 2025, the European catalysis congress, Trondheim, Norway (2025)
+- UTFORSK mobility scholarship, NTNU, for a research semester in Norway (2025)
+- GIAN course on characterisation of heterogeneous catalysts, IIT Madras (Apr – May 2025)
+- GATE 2024, Chemical Engineering: All India Rank 864, Out of 13,937 candidates (Feb 2024)
+- Paper presentation, SCHEMCON 2021, MANIT and IISER Bhopal (Oct 2021)

@@ -1,0 +1,10 @@
+{
+  "name": "ayush-suryawanshi-portfolio",
+  "private": true,
+  "type": "module",
+  "description": "Static portfolio site, built with a dependency-free Node script and served by GitHub Pages from the repository root.",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

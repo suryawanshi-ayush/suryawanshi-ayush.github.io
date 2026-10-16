@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t==='light'||t==='dark')d.setAttribute('data-theme',t);d.classList.add('js');if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.__siteReady)d.classList.remove('motion')},2500)}})();</script>
+<title>Oxygen reduction on a 13-atom platinum cluster – Ayush Suryawanshi</title>
+<meta name="description" content="DFT study by Ayush Suryawanshi of the four-electron oxygen reduction pathway on a Pt13 cluster in Gaussian 16 (UB3LYP), IIT Madras.">
+<meta name="author" content="Ayush Suryawanshi">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2315191F%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2227%22%20fill%3D%22%23F7F6F2%22%20text-anchor%3D%22middle%22%3EAS%3C%2Ftext%3E%3C%2Fsvg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ayush Suryawanshi">
+<meta property="og:title" content="Oxygen reduction on a 13-atom platinum cluster – Ayush Suryawanshi">
+<meta property="og:description" content="DFT study by Ayush Suryawanshi of the four-electron oxygen reduction pathway on a Pt13 cluster in Gaussian 16 (UB3LYP), IIT Madras.">
+<meta property="og:url" content="https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/">
+<meta property="og:image" content="https://suryawanshi-ayush.github.io/images/portrait-of-ayush-suryawanshi.jpg">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oxygen reduction on a 13-atom platinum cluster – Ayush Suryawanshi">
+<meta name="twitter:description" content="DFT study by Ayush Suryawanshi of the four-electron oxygen reduction pathway on a Pt13 cluster in Gaussian 16 (UB3LYP), IIT Madras.">
+<meta name="twitter:image" content="https://suryawanshi-ayush.github.io/images/portrait-of-ayush-suryawanshi.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.d3fcf0df.css">
+<script src="/assets/site.0b4c440b.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://suryawanshi-ayush.github.io/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://suryawanshi-ayush.github.io/projects/"},{"@type":"ListItem","position":3,"name":"Oxygen reduction on a 13-atom platinum cluster","item":"https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/"}]},{"@type":"CreativeWork","name":"Oxygen reduction on a 13-atom platinum cluster","headline":"Oxygen reduction on a 13-atom platinum cluster","description":"DFT study by Ayush Suryawanshi of the four-electron oxygen reduction pathway on a Pt13 cluster in Gaussian 16 (UB3LYP), IIT Madras.","url":"https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/","author":{"@id":"https://suryawanshi-ayush.github.io/#person"},"inLanguage":"en","keywords":"DFT, Gaussian 16, Oxygen reduction"}]}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="/" aria-label="Ayush Suryawanshi, home"><span class="mono-mark" aria-hidden="true">AS</span><span class="brand-name">Ayush Suryawanshi</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span class="burger" aria-hidden="true"></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul><li><a href="/projects/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/cv/">CV</a></li><li><a href="#contact">Contact</a></li></ul>
+    </nav>
+    <button class="theme-btn" type="button" aria-label="Switch colour theme"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.6 6.6 0 0 0 10.7 10.7z"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  </div>
+</header>
+<main id="main">
+
+<article class="project">
+<header class="page-head proj-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Oxygen reduction on a 13-atom platinum cluster</span></nav>
+    <p class="eyebrow">Modelling and simulation · Course project</p>
+    <h1>Oxygen reduction on a 13-atom platinum cluster</h1>
+    <p class="page-lede">A DFT study of the four-electron oxygen reduction pathway on Pt<sub>13</sub>.</p>
+    <dl class="proj-meta">
+      <div><dt>When</dt><dd>Jan – May 2025</dd></div>
+      <div><dt>Where</dt><dd>IIT Madras</dd></div>
+      <div><dt>Type</dt><dd>Course project, Computational Methods in Catalysis</dd></div><div><dt>Guide</dt><dd>Dr. Jithin John Varghese</dd></div><div><dt>Tools</dt><dd>Gaussian 16, Avogadro</dd></div><div><dt>Method</dt><dd>DFT, UB3LYP; LANL2DZ for Pt, 6-31G(d,p) for H and O</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap proj-layout">
+  <aside class="toc" aria-label="On this page">
+    <p class="eyebrow">On this page</p>
+    <ol><li><a href="#glance">At a glance</a></li><li><a href="#question">The question</a></li><li><a href="#approach">What I did</a></li><li><a href="#results">What I found</a></li><li><a href="#limits">Limits</a></li></ol>
+  </aside>
+  <div class="prose">
+    <section id="glance" class="glance" aria-labelledby="glance-h">
+      <h2 id="glance-h" class="sr-only">At a glance</h2>
+      <dl><div><dt>Problem</dt><dd>Oxygen reduction limits fuel cell cathodes. How do its intermediates sit on a small Pt cluster?</dd></div><div><dt>What I did</dt><dd>Optimised O<sub>2</sub>, OOH*, O*, OH* and H<sub>2</sub>O on Pt<sub>13</sub> and checked each was a true minimum.</dd></div><div><dt>Key result</dt><dd>Every step of the associative four-electron pathway was downhill in electronic energy.</dd></div><div><dt>Limits</dt><dd>Electronic energies only, no corrections or transition states, so no rates.</dd></div></dl>
+    </section>
+    <section id="question" aria-labelledby="question-h"><h2 id="question-h">The question</h2>
+<p>Oxygen reduction is slow even on platinum, and it is the reaction that limits fuel cell cathodes. Small clusters like Pt<sub>13</sub> have edge and corner sites that behave differently from flat surfaces. I wanted to see how the reaction intermediates sit on such a cluster and whether each step is energetically favourable.</p></section>
+<section id="approach" aria-labelledby="approach-h"><h2 id="approach-h">What I did</h2>
+<ol class="steps">
+  <li><h3>Built the structures</h3><p>The Pt<sub>13</sub> cluster and the O<sub>2</sub>, OOH, O, OH and H<sub>2</sub>O species were built in Avogadro.</p></li>
+  <li><h3>Optimised them</h3><p>Gaussian 16 with the spin-unrestricted B3LYP functional, LANL2DZ for platinum and 6-31G(d,p) for hydrogen and oxygen.</p></li>
+  <li><h3>Checked them</h3><p>A frequency calculation on every structure confirmed it was a true minimum, with no imaginary frequencies.</p></li>
+  <li><h3>Compared the steps</h3><p>Reaction energies for each step of the associative four-electron pathway, from the electronic (SCF) energies.</p></li>
+</ol></section>
+<section id="results" aria-labelledby="results-h"><h2 id="results-h">What I found</h2>
+<figure class="chart" aria-labelledby="dft-title">
+  <div class="chart-head">
+    <p class="chart-title" id="dft-title">Electronic energy change of each step (eV)</p>
+    <p class="chart-sub">Associative four-electron pathway on Pt<sub>13</sub>, UB3LYP. All four steps are negative, so each is downhill in electronic energy. No zero-point, thermal or entropy corrections.</p>
+  </div>
+  <div class="neg" role="list"><div class="neg-row" role="listitem">
+      <span class="neg-label"><span class="eq">O<sub>2</sub>* → OOH*</span><span class="muted">OOH* forms</span></span>
+      <span class="neg-track"><span class="neg-val">−2.84 eV</span><span class="neg-bar" style="--v:56.8"></span></span>
+    </div><div class="neg-row" role="listitem">
+      <span class="neg-label"><span class="eq">OOH* → O* + H<sub>2</sub>O</span><span class="muted">O* and water form</span></span>
+      <span class="neg-track"><span class="neg-val">−2.05 eV</span><span class="neg-bar" style="--v:41"></span></span>
+    </div><div class="neg-row" role="listitem">
+      <span class="neg-label"><span class="eq">O* → OH*</span><span class="muted">OH* forms</span></span>
+      <span class="neg-track"><span class="neg-val">−1.85 eV</span><span class="neg-bar" style="--v:37"></span></span>
+    </div><div class="neg-row" role="listitem">
+      <span class="neg-label"><span class="eq">OH* → H<sub>2</sub>O + Pt<sub>13</sub></span><span class="muted">Water released, cluster regenerated</span></span>
+      <span class="neg-track"><span class="neg-val">−3.90 eV</span><span class="neg-bar" style="--v:78"></span></span>
+    </div>
+    <div class="neg-axis" aria-hidden="true"><span>−5</span><span>−4</span><span>−3</span><span>−2</span><span>−1</span><span>0</span></div>
+  </div>
+</figure>
+<p>All four steps were downhill, which fits the known activity of platinum for this reaction and supports using small clusters for mechanistic work.</p>
+<details class="more"><summary>See the optimised structures</summary>
+<figure class="fig "><img src="/images/w/dft-orr-pt13-step-energies-figure-640.webp" srcset="/images/w/dft-orr-pt13-step-energies-figure-640.webp 640w, /images/w/dft-orr-pt13-step-energies-figure-1280.webp 1280w" sizes="(min-width: 1100px) 720px, 100vw" width="1900" height="1163" alt="Plot of step energies with the optimised structure drawn at each point" loading="lazy" decoding="async" data-zoom="/images/w/dft-orr-pt13-step-energies-figure-1280.webp"><figcaption>The same four step energies drawn along the reaction pathway, with the optimised structure of each intermediate. The line only guides the eye: no transition states were calculated.</figcaption></figure>
+</details></section>
+<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limits</h2>
+<p>These are electronic energies only, without zero-point, thermal or entropy corrections, and no transition states were located. They show which intermediates are stable, not how fast each step goes.</p></section>
+    <nav class="pager" aria-label="More projects">
+      <a class="prev" href="/projects/ntnu-synthesis-scale-up/"><span class="eyebrow">Previous</span>Making the catalyst synthesis safe to scale</a>
+      <a class="next" href="/projects/sncr-biomass-boiler/"><span class="eyebrow">Next</span>Cutting NOx from a biomass boiler</a>
+    </nav>
+  </div>
+</div>
+</article>
+</main>
+<footer class="site-foot" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="contact-title">Let’s talk about catalysts, cells or process design</h2>
+        <p class="contact-lede">Questions about a project, a collaboration, or something you read here are all welcome. Email is the quickest way to reach me.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:ayush.suryawanshi0803@gmail.com">Email me <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+        <a class="btn btn-ghost" href="/Ayush_CV_revised.pdf" download="Ayush_CV.pdf">Download CV (PDF) <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg></a>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:ayush.suryawanshi0803@gmail.com">ayush.suryawanshi0803@gmail.com</a></li>
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/ayush-suryawanshi" rel="me noopener" target="_blank">linkedin.com/in/ayush-suryawanshi</a></li>
+          <li><span class="k">Based in</span><span>Ahmedabad, India</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-row">
+      <p>© 2026 Ayush Suryawanshi. Last updated October 2026.</p>
+      <p><a href="/">Home</a> · <a href="/projects/">Work</a> · <a href="/about/">About</a> · <a href="/cv/">CV</a></p>
+    </div>
+  </div>
+</footer>
+<dialog class="lightbox" aria-label="Enlarged image">
+  <form method="dialog"><button class="lb-close" aria-label="Close">Close <kbd>Esc</kbd></button></form>
+  <img alt="">
+  <p class="lb-cap"></p>
+  <a class="lb-full" href="#" target="_blank" rel="noopener">Open full size in a new tab</a>
+  <div class="lb-nav"><button type="button" data-step="-1" aria-label="Previous image">←</button><button type="button" data-step="1" aria-label="Next image">→</button></div>
+</dialog>
+</body>
+</html>
