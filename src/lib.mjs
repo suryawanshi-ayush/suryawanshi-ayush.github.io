@@ -39,7 +39,7 @@ export function img(file, alt, { sizes = '100vw', eager = false, cls = '', zoom 
   return `<img ${attrs.join(' ')}>`;
 }
 
-/** Figure with caption. `source` is shown as a quiet attribution line under the caption. */
+/** Figure with caption. Captions describe the figure only; figure numbers and document sources are not shown on the site. */
 export function fig(file, alt, caption, { source = '', cls = '', sizes, zoom = true, pos } = {}) {
   return `<figure class="fig ${cls}">${img(file, alt, { sizes, zoom, pos })}<figcaption>${caption}${
     source ? ` <span class="src">${source}</span>` : ''

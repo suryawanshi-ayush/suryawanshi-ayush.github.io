@@ -35,10 +35,13 @@ def main():
         widths = [x for x in widths if x == w or x in (640, 1280)]
         if 'poster' in stem and w > 1280:
             widths.append(w)  # posters need full resolution to be readable when enlarged
+        figure = stem.startswith("thesis-figure-")
+        if figure and w > 1280:
+            widths.append(min(w, 2000))  # data figures: a sharper copy for the enlarged view
         for ww in widths:
             target = OUT / f"{name}-{ww}.webp"
             if not target.exists():
-                im.resize((ww, round(h * ww / w)), Image.LANCZOS).save(target, "WEBP", quality=80, method=6)
+                im.resize((ww, round(h * ww / w)), Image.LANCZOS).save(target, "WEBP", quality=92 if figure else 80, method=6)
         meta[src.name] = {"name": name, "w": w, "h": h, "widths": widths}
     (ROOT / "src" / "images.json").write_text(json.dumps(meta, indent=1) + "\n")
     print(f"{len(meta)} images")

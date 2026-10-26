@@ -25,15 +25,6 @@
    1280
   ]
  },
- "ayush-presenting-slides-to-a-classroom.jpg": {
-  "name": "ayush-presenting-slides-to-a-classroom",
-  "w": 1400,
-  "h": 788,
-  "widths": [
-   640,
-   1280
-  ]
- },
  "ayush-reading-conference-posters.jpg": {
   "name": "ayush-reading-conference-posters",
   "w": 554,
@@ -68,33 +59,6 @@
    554
   ]
  },
- "ayush-suryawanshi-current-retention-curves-over-one-hour-for-five.jpg": {
-  "name": "current-retention-curves-over-one-hour-for-five",
-  "w": 1890,
-  "h": 1340,
-  "widths": [
-   640,
-   1280
-  ]
- },
- "ayush-suryawanshi-cyclic-voltammograms-of-three-catalysts-in-formic-acid.jpg": {
-  "name": "cyclic-voltammograms-of-three-catalysts-in-formic-acid",
-  "w": 1890,
-  "h": 1341,
-  "widths": [
-   640,
-   1280
-  ]
- },
- "ayush-suryawanshi-edx-maps-for-carbon-platinum-bismuth-and-oxygen.jpg": {
-  "name": "edx-maps-for-carbon-platinum-bismuth-and-oxygen",
-  "w": 1890,
-  "h": 1417,
-  "widths": [
-   640,
-   1280
-  ]
- },
  "ayush-suryawanshi-glass-cell-with-a-carbon-paper-electrode-and.jpg": {
   "name": "glass-cell-with-a-carbon-paper-electrode-and",
   "w": 554,
@@ -109,15 +73,6 @@
   "h": 1200,
   "widths": [
    554
-  ]
- },
- "ayush-suryawanshi-grid-of-five-fe-sem-micrographs-of-the.jpg": {
-  "name": "grid-of-five-fe-sem-micrographs-of-the",
-  "w": 1733,
-  "h": 2005,
-  "widths": [
-   640,
-   1280
   ]
  },
  "ayush-suryawanshi-group-photo-of-m-tech-students-in-convocation.jpg": {
@@ -183,15 +138,6 @@
    1280
   ]
  },
- "ayush-suryawanshi-plot-of-nox-and-ammonia-slip-against-sncr.jpg": {
-  "name": "plot-of-nox-and-ammonia-slip-against-sncr",
-  "w": 1281,
-  "h": 705,
-  "widths": [
-   640,
-   1280
-  ]
- },
  "ayush-suryawanshi-sem-micrograph-of-agglomerated-catalyst-nanoclusters.jpg": {
   "name": "sem-micrograph-of-agglomerated-catalyst-nanoclusters",
   "w": 749,
@@ -199,15 +145,6 @@
   "widths": [
    640,
    749
-  ]
- },
- "ayush-suryawanshi-six-step-schematic-of-the-catalyst-synthesis.jpg": {
-  "name": "six-step-schematic-of-the-catalyst-synthesis",
-  "w": 1910,
-  "h": 906,
-  "widths": [
-   640,
-   1280
   ]
  },
  "ayush-suryawanshi-two-high-magnification-sem-micrographs.jpg": {
@@ -237,16 +174,6 @@
    800
   ]
  },
- "sncr-poster-treforedlingsforum-2025.jpg": {
-  "name": "sncr-poster-treforedlingsforum-2025",
-  "w": 1800,
-  "h": 2547,
-  "widths": [
-   640,
-   1280,
-   1800
-  ]
- },
  "sncr-project-team-dinner-trondheim.jpg": {
   "name": "sncr-project-team-dinner-trondheim",
   "w": 1280,
@@ -254,6 +181,46 @@
   "widths": [
    640,
    1280
+  ]
+ },
+ "thesis-figure-retention-formic-acid.jpg": {
+  "name": "thesis-figure-retention-formic-acid",
+  "w": 3092,
+  "h": 2115,
+  "widths": [
+   640,
+   1280,
+   2000
+  ]
+ },
+ "thesis-figure-retention-with-aqsa.jpg": {
+  "name": "thesis-figure-retention-with-aqsa",
+  "w": 3072,
+  "h": 2115,
+  "widths": [
+   640,
+   1280,
+   2000
+  ]
+ },
+ "thesis-figure-xrd-high-bi.jpg": {
+  "name": "thesis-figure-xrd-high-bi",
+  "w": 2909,
+  "h": 2032,
+  "widths": [
+   640,
+   1280,
+   2000
+  ]
+ },
+ "thesis-figure-xrd-low-bi.jpg": {
+  "name": "thesis-figure-xrd-low-bi",
+  "w": 2909,
+  "h": 2032,
+  "widths": [
+   640,
+   1280,
+   2000
   ]
  }
 }

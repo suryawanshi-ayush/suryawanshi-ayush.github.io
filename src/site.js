@@ -4,7 +4,6 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
-  window.__siteReady = true;
 
   /* ---------- theme ---------- */
   const themeBtn = $('.theme-btn');
@@ -34,22 +33,16 @@
     if (e.key === 'Escape' && menuBtn?.getAttribute('aria-expanded') === 'true') { setMenu(false); menuBtn.focus(); }
   });
 
-  /* ---------- reveal on scroll ---------- */
-  const reveal = $$('[data-reveal], .chart');
+  /* ---------- the one orchestrated motion: the process-flow line draws in; charts fill when seen ---------- */
+  const watch = $$('.pfd, .chart');
   if (root.classList.contains('motion') && 'IntersectionObserver' in window) {
-    // Stagger items that share a parent (cards, stages) so they arrive in reading order.
-    reveal.forEach((el) => {
-      const sibs = Array.from(el.parentElement.children).filter((c) => c.hasAttribute('data-reveal'));
-      const i = sibs.indexOf(el);
-      if (i > 0) el.style.transitionDelay = `${Math.min(i, 5) * 70}ms`;
-    });
     const io = new IntersectionObserver(
       (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }),
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.15 },
     );
-    reveal.forEach((el) => io.observe(el));
+    watch.forEach((el) => io.observe(el));
   } else {
-    reveal.forEach((el) => el.classList.add('in'));
+    watch.forEach((el) => el.classList.add('in'));
   }
 
   /* ---------- chart series toggle ---------- */
@@ -66,19 +59,19 @@
   /* ---------- project filters ---------- */
   const filters = $('.filters');
   if (filters) {
-    const cards = $$('.card[data-kind]');
-    const count = $('[data-count]', filters);
+    const rows = $$('.work-row[data-kind]');
+    const count = $('[data-count]');
     $$('button', filters).forEach((b) =>
       b.addEventListener('click', () => {
         $$('button', filters).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
         const k = b.dataset.filter;
         let n = 0;
-        cards.forEach((c) => {
-          const show = k === 'all' || c.dataset.kind.split(' ').includes(k);
-          c.hidden = !show;
-          if (show) { n++; c.classList.add('in'); }
+        rows.forEach((r) => {
+          const show = k === 'all' || r.dataset.kind.split(' ').includes(k);
+          r.hidden = !show;
+          if (show) n++;
         });
-        count.textContent = `${n} project${n === 1 ? '' : 's'}`;
+        if (count) count.textContent = `${n} project${n === 1 ? '' : 's'} shown`;
       }),
     );
   }
@@ -143,6 +136,142 @@
     box.addEventListener('click', (e) => { if (e.target === box) box.close(); });
     box.addEventListener('close', () => opener?.focus());
   }
+
+  /* ---------- intro video ---------- */
+  // Starts muted as soon as the page opens (browsers only allow silent autoplay) and
+  // draws its own captions. Once the visitor pauses, it stays paused: scrolling away
+  // only pauses it, and coming back resumes it unless the visitor paused it.
+  $$('.intro-video').forEach((wrap) => {
+    const frame = $('.iv-frame', wrap);
+    const v = $('.iv-video', wrap);
+    if (!frame || !v) return;
+    const cap = $('.iv-caption', frame);
+    const bar = $('.iv-bar', frame);
+    const big = $('.iv-big', frame);
+    const soundPill = $('.iv-sound', frame);
+    const toggle = $('.iv-toggle', frame);
+    const seek = $('.iv-seek', frame);
+    const time = $('.iv-time', frame);
+    const ccBtn = $('.iv-cc', frame);
+    const muteBtn = $('.iv-mute', frame);
+    const fsBtn = $('.iv-fs', frame);
+
+    // Our controls replace the native ones; the caption track feeds our overlay.
+    v.removeAttribute('controls');
+    bar.hidden = false;
+    frame.tabIndex = -1;
+    let userPaused = false;
+    let inView = true;
+    let hideTimer;
+
+    const fmt = (s) => (isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}` : '0:00');
+    const setState = () => {
+      const st = v.ended ? 'ended' : v.paused ? 'paused' : 'playing';
+      frame.dataset.state = st;
+      toggle.setAttribute('aria-label', st === 'playing' ? 'Pause' : 'Play');
+      big.hidden = st === 'playing';
+      big.setAttribute('aria-label', st === 'ended' ? 'Play the introduction again' : 'Play the introduction');
+      if (st !== 'playing') showUi(true); else showUi();
+    };
+    const showUi = (stick) => {
+      frame.dataset.ui = 'show';
+      clearTimeout(hideTimer);
+      if (!stick && !v.paused) hideTimer = setTimeout(() => { if (!v.paused && !frame.contains(document.activeElement)) frame.dataset.ui = 'hide'; }, 2600);
+    };
+    const setSound = () => {
+      const on = !v.muted;
+      frame.dataset.sound = on ? 'on' : 'off';
+      muteBtn.setAttribute('aria-label', on ? 'Mute' : 'Turn sound on');
+      if (on) soundPill.hidden = true;
+    };
+
+    // Captions from the WebVTT track, drawn as page text so they scale with the screen.
+    const track = v.textTracks && v.textTracks[0];
+    if (track) {
+      track.mode = 'hidden';
+      track.addEventListener('cuechange', () => {
+        const c = track.activeCues && track.activeCues[0];
+        cap.textContent = c ? c.text : '';
+      });
+    }
+    ccBtn.addEventListener('click', () => {
+      const off = frame.dataset.cc !== 'off';
+      frame.dataset.cc = off ? 'off' : 'on';
+      ccBtn.setAttribute('aria-pressed', String(!off));
+      ccBtn.setAttribute('aria-label', off ? 'Show captions' : 'Hide captions');
+    });
+
+    const play = () => v.play().catch(() => setState());
+    const userToggle = () => {
+      if (v.paused || v.ended) { userPaused = false; play(); }
+      else { userPaused = true; v.pause(); }
+    };
+    toggle.addEventListener('click', userToggle);
+    big.addEventListener('click', () => { userPaused = false; play(); });
+    v.addEventListener('click', userToggle);
+    frame.addEventListener('keydown', (e) => {
+      if (e.target.closest('button, input')) return;
+      if (e.key === ' ' || e.key === 'k') { e.preventDefault(); userToggle(); }
+    });
+
+    // First "Watch with sound" restarts from the top so the visitor hears it all.
+    soundPill.addEventListener('click', () => {
+      v.muted = false;
+      if (v.currentTime > 2) v.currentTime = 0;
+      userPaused = false;
+      play();
+      setSound();
+      toggle.focus({ preventScroll: true });
+    });
+    muteBtn.addEventListener('click', () => { v.muted = !v.muted; setSound(); });
+    v.addEventListener('volumechange', setSound);
+
+    seek.addEventListener('input', () => { if (v.duration) v.currentTime = (seek.value / 1000) * v.duration; });
+    v.addEventListener('timeupdate', () => {
+      if (v.duration) seek.value = String(Math.round((v.currentTime / v.duration) * 1000));
+      time.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`;
+    });
+
+    fsBtn.addEventListener('click', () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (frame.requestFullscreen) frame.requestFullscreen().catch(() => {});
+      else if (v.webkitEnterFullscreen) { if (track) track.mode = 'showing'; v.webkitEnterFullscreen(); }
+    });
+    v.addEventListener('webkitendfullscreen', () => { if (track) track.mode = 'hidden'; });
+    document.addEventListener('fullscreenchange', () => fsBtn.setAttribute('aria-label', document.fullscreenElement ? 'Exit full screen' : 'Full screen'));
+
+    ['play', 'pause', 'ended', 'loadedmetadata'].forEach((ev) => v.addEventListener(ev, setState));
+    v.addEventListener('ended', () => { userPaused = false; });
+    frame.addEventListener('pointermove', () => showUi());
+    frame.addEventListener('focusin', () => showUi(true));
+    frame.addEventListener('focusout', () => showUi());
+    setSound();
+    setState();
+
+    // Autoplay on arrival, unless the visitor asked for reduced motion or data saving.
+    const saveData = navigator.connection && navigator.connection.saveData;
+    const auto = !reduce.matches && !saveData;
+    if (auto) {
+      v.preload = 'auto';
+      soundPill.hidden = false;
+      play();
+    } else {
+      big.hidden = false;
+    }
+
+    // Pause while scrolled out of view; resume on return only if the visitor didn't pause it.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        inView = entries[0].isIntersecting;
+        if (!inView && !v.paused) v.pause();
+        else if (inView && auto && v.paused && !v.ended && !userPaused) play();
+      }, { threshold: 0.35 }).observe(frame);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && !v.paused) v.pause();
+      else if (!document.hidden && inView && auto && v.paused && !v.ended && !userPaused) play();
+    });
+  });
 
   /* ---------- formic acid schematic ---------- */
   const SVGNS = 'http://www.w3.org/2000/svg';

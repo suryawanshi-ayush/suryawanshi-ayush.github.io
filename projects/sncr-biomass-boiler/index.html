@@ -1,95 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t==='light'||t==='dark')d.setAttribute('data-theme',t);d.classList.add('js');if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.__siteReady)d.classList.remove('motion')},2500)}})();</script>
-<title>Cutting NOx from a biomass boiler – Ayush Suryawanshi</title>
-<meta name="description" content="SNCR retrofit design for NOx reduction in a biomass boiler, a four-person NTNU process design project with Billerud Viken and Vardar Varme, modelled in Python with Cantera.">
+<script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t==='light'||t==='dark')d.setAttribute('data-theme',t);d.classList.add('js');if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('motion');})();</script>
+<title>Designing an SNCR retrofit for a biomass boiler – Ayush Suryawanshi</title>
+<meta name="description" content="SNCR retrofit design study for NOx reduction in a biomass boiler by a four-person NTNU team including Ayush Suryawanshi, for Norwegian industry partners, with Cantera combustion and kinetic models and a cost estimate.">
 <meta name="author" content="Ayush Suryawanshi">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2315191F%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2227%22%20fill%3D%22%23F7F6F2%22%20text-anchor%3D%22middle%22%3EAS%3C%2Ftext%3E%3C%2Fsvg%3E">
+<meta name="theme-color" content="#F7F6F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111419" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M32%203%2057%2017.5v29L32%2061%207%2046.5v-29z%22%20fill%3D%22%2315191F%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2240%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2222%22%20fill%3D%22%23F7F6F2%22%20text-anchor%3D%22middle%22%3EAS%3C%2Ftext%3E%3C%2Fsvg%3E">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ayush Suryawanshi">
-<meta property="og:title" content="Cutting NOx from a biomass boiler – Ayush Suryawanshi">
-<meta property="og:description" content="SNCR retrofit design for NOx reduction in a biomass boiler, a four-person NTNU process design project with Billerud Viken and Vardar Varme, modelled in Python with Cantera.">
+<meta property="og:title" content="Designing an SNCR retrofit for a biomass boiler – Ayush Suryawanshi">
+<meta property="og:description" content="SNCR retrofit design study for NOx reduction in a biomass boiler by a four-person NTNU team including Ayush Suryawanshi, for Norwegian industry partners, with Cantera combustion and kinetic models and a cost estimate.">
 <meta property="og:url" content="https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/">
 <meta property="og:image" content="https://suryawanshi-ayush.github.io/images/ayush-suryawanshi-photo-5ee7ac61.jpg">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cutting NOx from a biomass boiler – Ayush Suryawanshi">
-<meta name="twitter:description" content="SNCR retrofit design for NOx reduction in a biomass boiler, a four-person NTNU process design project with Billerud Viken and Vardar Varme, modelled in Python with Cantera.">
+<meta name="twitter:title" content="Designing an SNCR retrofit for a biomass boiler – Ayush Suryawanshi">
+<meta name="twitter:description" content="SNCR retrofit design study for NOx reduction in a biomass boiler by a four-person NTNU team including Ayush Suryawanshi, for Norwegian industry partners, with Cantera combustion and kinetic models and a cost estimate.">
 <meta name="twitter:image" content="https://suryawanshi-ayush.github.io/images/ayush-suryawanshi-photo-5ee7ac61.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/site.d3fcf0df.css">
-<script src="/assets/site.0b4c440b.js" defer></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://suryawanshi-ayush.github.io/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://suryawanshi-ayush.github.io/projects/"},{"@type":"ListItem","position":3,"name":"Cutting NOx from a biomass boiler","item":"https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/"}]},{"@type":"CreativeWork","name":"Cutting NOx from a biomass boiler","headline":"Cutting NOx from a biomass boiler","description":"SNCR retrofit design for NOx reduction in a biomass boiler, a four-person NTNU process design project with Billerud Viken and Vardar Varme, modelled in Python with Cantera.","url":"https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/","author":{"@id":"https://suryawanshi-ayush.github.io/#person"},"inLanguage":"en","keywords":"Process design, Kinetic modelling, Python / Cantera"}]}</script>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-serif-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.45726d25.css">
+<script src="/assets/site.2f133d79.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://suryawanshi-ayush.github.io/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://suryawanshi-ayush.github.io/projects/"},{"@type":"ListItem","position":3,"name":"Designing an SNCR retrofit for a biomass boiler","item":"https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/"}]},{"@type":"CreativeWork","name":"Designing an SNCR retrofit for a biomass boiler","headline":"Designing an SNCR retrofit for a biomass boiler","description":"SNCR retrofit design study for NOx reduction in a biomass boiler by a four-person NTNU team including Ayush Suryawanshi, for Norwegian industry partners, with Cantera combustion and kinetic models and a cost estimate.","url":"https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/","author":{"@id":"https://suryawanshi-ayush.github.io/#person"},"inLanguage":"en","keywords":"Process design, Kinetic modelling, Python / Cantera, Process economics"}]}</script>
 </head>
 <body class="">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head">
   <div class="wrap head-row">
-    <a class="brand" href="/" aria-label="Ayush Suryawanshi, home"><span class="mono-mark" aria-hidden="true">AS</span><span class="brand-name">Ayush Suryawanshi</span></a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span class="burger" aria-hidden="true"></span></button>
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2.5 35.2 11.25v17.5L20 37.5 4.8 28.75v-17.5z"/><text x="20" y="25">AS</text></svg><span class="brand-name">Ayush Suryawanshi</span></a>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul><li><a href="/projects/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/cv/">CV</a></li><li><a href="#contact">Contact</a></li></ul>
     </nav>
     <button class="theme-btn" type="button" aria-label="Switch colour theme"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.6 6.6 0 0 0 10.7 10.7z"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span class="burger" aria-hidden="true"></span></button>
   </div>
 </header>
 <main id="main">
 
 <article class="project">
-<header class="page-head proj-head">
+<header class="page-head sheet proj-head">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Cutting NOx from a biomass boiler</span></nav>
-    <p class="eyebrow">Process engineering · NTNU, team of four</p>
-    <h1>Cutting NOx from a biomass boiler</h1>
-    <p class="page-lede">Process design for an SNCR retrofit, modelled in Cantera and presented in Oslo.</p>
-    <dl class="proj-meta">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/projects/">Work</a><span aria-hidden="true">/</span><span aria-current="page">Designing an SNCR retrofit for a biomass boiler</span></nav>
+    <ul class="tags "><li class="tag process">Process engineering</li><li class="tag modelling">Modelling</li></ul>
+    <h1>Designing an SNCR retrofit for a biomass boiler</h1>
+    <p class="lede">A four-person design study: can selective non-catalytic reduction bring a biomass boiler under its NOx limit, and at what cost?</p>
+    <dl class="datasheet">
+      <div class="ds-type"><dt>Type</dt><dd>Process engineering · NTNU, team of four</dd></div>
       <div><dt>When</dt><dd>Aug – Nov 2025</dd></div>
       <div><dt>Where</dt><dd>NTNU, Trondheim</dd></div>
-      <div><dt>Type</dt><dd>Process design project (TKP4170)</dd></div><div><dt>Team</dt><dd>Four students</dd></div><div><dt>Supervisor</dt><dd>Prof. Øyvind Weiby Gregersen</dd></div><div><dt>Industry partners</dt><dd>Billerud Viken; boiler operated by Vardar Varme AS</dd></div><div><dt>Tools</dt><dd>Python, Cantera, Excel</dd></div><div><dt>Presented at</dt><dd>Treforedlingsforum 2025, Oslo</dd></div>
+      <div><dt>Team</dt><dd>Four students</dd></div>
+      <div><dt>Supervisor</dt><dd>Prof. Øyvind Weiby Gregersen</dd></div>
+      <div><dt>Industry partners</dt><dd>Billerud Viken; boiler operated by Vardar Varme AS</dd></div>
+      <div><dt>Tools</dt><dd>Python, Cantera, Aspen HYSYS, Excel</dd></div>
+      <div><dt>Presented at</dt><dd>Treforedlingsforum 2025, Oslo</dd></div>
     </dl>
   </div>
 </header>
 <div class="wrap"><figure class="fig proj-hero natural"><img src="/images/w/sncr-team-poster-treforedlingsforum-oslo-640.webp" srcset="/images/w/sncr-team-poster-treforedlingsforum-oslo-640.webp 640w, /images/w/sncr-team-poster-treforedlingsforum-oslo-1280.webp 1280w" sizes="(min-width: 900px) 760px, 100vw" width="1280" height="960" alt="Ayush and two teammates standing beside their SNCR poster at a conference" loading="lazy" decoding="async" data-zoom="/images/w/sncr-team-poster-treforedlingsforum-oslo-1280.webp"><figcaption>With two of my teammates beside our poster at Treforedlingsforum 2025 in Oslo.</figcaption></figure></div>
 <div class="wrap proj-layout">
   <aside class="toc" aria-label="On this page">
-    <p class="eyebrow">On this page</p>
-    <ol><li><a href="#glance">At a glance</a></li><li><a href="#question">The question</a></li><li><a href="#approach">How we approached it</a></li><li><a href="#results">What we found</a></li><li><a href="#learned">What I took from it</a></li></ol>
+    <p class="toc-h">On this page</p>
+    <ol><li><a href="#glance">At a glance</a></li><li><a href="#problem">Problem and baseline</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#methods">Methods and assumptions</a></li><li><a href="#results">Results</a></li><li><a href="#limits">Limitations</a></li><li><a href="#evidence">Supporting evidence</a></li></ol>
   </aside>
   <div class="prose">
     <section id="glance" class="glance" aria-labelledby="glance-h">
-      <h2 id="glance-h" class="sr-only">At a glance</h2>
-      <dl><div><dt>Problem</dt><dd>An upgraded biomass boiler must stay under 300 mg/Nm³ NOx. Could an SNCR retrofit get it there?</dd></div><div><dt>What I did</dt><dd>As one of four, estimated baseline NOx, checked the operating window, and modelled combustion and SNCR chemistry in Cantera.</dd></div><div><dt>Key result</dt><dd>About 60% reduction, bringing NOx to roughly 95–120 mg/Nm³ in the model.</dd></div><div><dt>Limits</dt><dd>A design study built on incomplete plant data, not a plant trial.</dd></div></dl>
+      <h2 id="glance-h">At a glance</h2>
+      <dl><div><dt>Problem</dt><dd>An upgraded biomass boiler must stay under the 300 mg/Nm³ NOx limit, and its modelled uncontrolled NOx sat around that limit. Could an SNCR retrofit give a safe margin, and at what cost?</dd></div><div><dt>My contribution</dt><dd>Carried out the literature survey, built the Python (Cantera) combustion and SNCR kinetic models, did the hand calculations for the design basis and contributed the Aspen HYSYS simulation. Presented the poster in Oslo.</dd></div><div><dt>Key result</dt><dd>With a conservative design reduction of about 60% (the ideal model gave above 90%), modelled emissions fall well under the limit. Capital and running costs were estimated: not profitable at current NOx tax, but justified as a compliance cost.</dd></div><div><dt>Limits</dt><dd>Idealised model (perfect mixing, fixed temperature profile), very limited plant data for comparison, and a design study rather than a plant trial. On-site measurement was recommended.</dd></div></dl>
     </section>
-    <section id="question" aria-labelledby="question-h"><h2 id="question-h">The question</h2>
-<p>An existing biomass boiler, run for district heating by Vardar Varme, is to be upgraded to 30–35 MW to supply steam to Billerud Viken’s planned bleached chemi-thermomechanical pulp (BCTMP) mill. Burning biomass produces NOx, and the plant has to stay under 300 mg/Nm³. Our team of four looked at whether a selective non-catalytic reduction (SNCR) retrofit could get it there.</p></section>
-<section id="approach" aria-labelledby="approach-h"><h2 id="approach-h">How we approached it</h2>
+    <section id="problem" aria-labelledby="problem-h"><h2 id="problem-h">Problem and baseline</h2>
+<p>An existing biomass boiler at a Norwegian industrial site is to be upgraded to supply process steam to a planned pulp mill. Burning biomass produces NOx, and the plant has to stay under a limit of 300 mg/Nm³. The team asked whether a selective non-catalytic reduction (SNCR) retrofit, injecting ammonia into the hot flue gas, could keep it there with a safe margin.</p>
+<p><strong>Baseline.</strong> The combustion models put uncontrolled NOx around the limit for both fuel cases studied, which is the range where SNCR is known to work. Only one older plant measurement was available for comparison.</p></section>
+<section id="contribution" aria-labelledby="contribution-h"><h2 id="contribution-h">My contribution</h2>
+<p>I was one of four authors of the design report. My part:</p>
+<ul class="tight">
+  <li><strong>Literature survey</strong> on SNCR chemistry, reagents and operating windows.</li>
+  <li><strong>The Python (Cantera) models:</strong> equilibrium combustion and the one-dimensional plug-flow SNCR kinetics, mapping NO reduction and ammonia slip against injection temperature and ammonia dose.</li>
+  <li><strong>Hand calculations</strong> for the design basis, and the <strong>Aspen HYSYS</strong> process simulation.</li>
+  <li><strong>Presenting</strong> the work as a poster at Treforedlingsforum 2025 in Oslo, 18–19 November.</li>
+</ul>
+<p>Reagent selection, equipment sizing, safety measures and the cost estimates were the team’s joint work.</p></section>
+<section id="methods" aria-labelledby="methods-h"><h2 id="methods-h">Methods and assumptions</h2>
 <ol class="steps">
-  <li><h3>Estimated the starting point</h3><p>Uncontrolled NOx came out at 280–330 mg/Nm³, in the range where SNCR is effective.</p></li>
-  <li><h3>Checked the operating window</h3><p>Mass and energy balances gave a flame temperature near 1250 °C and a flue-gas residence time of 0.6–2 s, both suitable for SNCR.</p></li>
-  <li><h3>Modelled the chemistry</h3><p>A combustion equilibrium model and a plug-flow SNCR kinetic model in Python with Cantera, using the GRI-Mech 3.0 and San Diego mechanisms.</p></li>
-  <li><h3>Designed the system</h3><p>Ammonia was chosen as the reagent for cost and performance. We laid out storage, mixing and injection, sized the main equipment, set out ammonia safety measures and estimated capital and operating costs.</p></li>
-</ol></section>
-<section id="results" aria-labelledby="results-h"><h2 id="results-h">What we found</h2>
-<p>A realistic reduction of about 60% brings emissions to roughly 95–120 mg/Nm³, well under the limit. Because both performance and ammonia slip depend strongly on temperature, the study recommends injecting towards the upper end of the temperature window. Reagent use dominates the running cost.</p>
-<div class="fig-row">
-<figure class="fig "><img src="/images/w/plot-of-nox-and-ammonia-slip-against-sncr-640.webp" srcset="/images/w/plot-of-nox-and-ammonia-slip-against-sncr-640.webp 640w, /images/w/plot-of-nox-and-ammonia-slip-against-sncr-1280.webp 1280w" sizes="(min-width: 720px) 340px, 100vw" width="1281" height="705" alt="Plot of NOx and ammonia slip against SNCR temperature" loading="lazy" decoding="async" data-zoom="/images/w/plot-of-nox-and-ammonia-slip-against-sncr-1280.webp"><figcaption>Modelled NOx with and without SNCR across injection temperatures. The dashed line is the 300 mg/Nm³ limit and the shaded band is the usual SNCR window: inject too cold and ammonia slips through, too hot and it burns to NOx itself.</figcaption></figure>
-<figure class="fig "><img src="/images/w/plot-of-no-reduction-and-ammonia-slip-against-640.webp" srcset="/images/w/plot-of-no-reduction-and-ammonia-slip-against-640.webp 640w, /images/w/plot-of-no-reduction-and-ammonia-slip-against-1280.webp 1280w" sizes="(min-width: 720px) 340px, 100vw" width="1400" height="930" alt="Plot of NO reduction and ammonia slip against the normalised stoichiometric ratio" loading="lazy" decoding="async" data-zoom="/images/w/plot-of-no-reduction-and-ammonia-slip-against-1280.webp"><figcaption>More ammonia removes more NO, but past a point the unreacted ammonia slipping through rises steeply. The design dose sits where reduction is high and slip is still low.</figcaption></figure>
-</div>
-<p>I presented the work as a poster at Treforedlingsforum 2025 in Oslo on 18–19 November 2025.</p>
-<figure class="fig poster"><img src="/images/w/sncr-poster-treforedlingsforum-2025-640.webp" srcset="/images/w/sncr-poster-treforedlingsforum-2025-640.webp 640w, /images/w/sncr-poster-treforedlingsforum-2025-1280.webp 1280w, /images/w/sncr-poster-treforedlingsforum-2025-1800.webp 1800w" sizes="(min-width: 900px) 420px, 90vw" width="1800" height="2547" alt="Conference poster titled SNCR Technology for Reduction of NOx Emissions in a Bio-Boiler, with sections on motivation, modelling, reagent use and economics" loading="lazy" decoding="async" data-zoom="/images/w/sncr-poster-treforedlingsforum-2025-1800.webp"><figcaption>The poster we presented in Oslo. It condenses the study into one page: why the boiler needs NOx control, how we modelled it, how much ammonia it takes and what it costs. Select it to read it at full size.</figcaption></figure></section>
-<section id="learned" aria-labelledby="learned-h"><h2 id="learned-h">What I took from it</h2>
-<p>This was my first design project for an industry client. It taught me to work from incomplete plant data, state assumptions clearly, and give a recommendation a client can act on.</p></section>
+  <li><h3>Checked the starting point</h3><p>Spreadsheet calculations estimated the flame temperature and the time the flue gas spends in the post-combustion zone, to see whether the boiler suits SNCR.</p></li>
+  <li><h3>Modelled the combustion</h3><p>A Cantera equilibrium model with the GRI-Mech 3.0 mechanism, with the solid fuels represented by a gas-phase surrogate from their ultimate analysis, predicted flue-gas temperature and uncontrolled NO for two feed cases.</p></li>
+  <li><h3>Modelled the SNCR</h3><p>A one-dimensional plug-flow reactor in Python with Cantera and the San Diego Reduced-N mechanism tracked NO reduction and ammonia slip for different injection temperatures and ammonia-to-NOx ratios (NSR).</p></li>
+  <li><h3>Designed and costed the system</h3><p>Ammonia was chosen as the reagent for performance and cost. The team laid out storage, mixing and injection, sized the main equipment, set out safety measures and estimated capital and running costs.</p></li>
+</ol>
+<div class="table-wrap cols-2" role="region" aria-labelledby="tbl-1" tabindex="0"><table>
+  <caption id="tbl-1">Design assumptions and operating points</caption>
+  <thead><tr><th scope="col">Item</th><th scope="col">Value used</th></tr></thead>
+  <tbody><tr><th scope="row">SNCR temperature window</th><td>Reduction rises between 900 and 1000 °C and falls above it; injection recommended at the upper end, 1000–1100 °C</td></tr><tr><th scope="row">Reagent and dose</th><td>25 wt% ammonia solution; start at NSR 1.4 and tune from measurements; equipment sized at NSR 2.0</td></tr><tr><th scope="row">Model simplifications</th><td>Perfect mixing, fixed temperature profile, steady state: an upper-bound estimate</td></tr><tr><th scope="row">Economics</th><td>8% discount rate, 20-year life, savings measured against the NOx tax</td></tr></tbody>
+</table></div></section>
+<section id="results" aria-labelledby="results-h"><h2 id="results-h">Results</h2>
+<div class="table-wrap cols-3" role="region" aria-labelledby="tbl-2" tabindex="0"><table>
+  <caption id="tbl-2">Modelled NOx reduction for the two fuel cases</caption>
+  <thead><tr><th scope="col">Case</th><th scope="col">Ideal model</th><th scope="col">Design case</th></tr></thead>
+  <tbody><tr><th scope="row">Baseline fuel case</th><td>94%</td><td>63%</td></tr><tr><th scope="row">Lower fuel case</th><td>93%</td><td>65%</td></tr></tbody>
+</table></div><p class="note">The design cases are not an independent prediction: the report tuned the model to about 60% reduction, which it describes as consistent with industrial experience, by running it at an unrealistically high 1400 °C, where modelled ammonia slip is zero. The report calls this optimistic. Absolute emission levels, fuel flows and plant data are not shown here because they depend on the industry partners’ information.</p>
+<ul class="tight">
+  <li><strong>Temperature matters most.</strong> Reduction is limited below about 850 °C, rises quickly between 900 and 1000 °C and falls at higher temperatures as ammonia oxidises. At the cooler end of the window modelled ammonia slip rises sharply, so the recommendation is to inject between 900 and 1100 °C, near the upper end.</li>
+  <li><strong>Reagent and cost.</strong> Reagent use dominates the running cost. Capital and running costs were estimated with standard cost correlations and public prices. At current NOx tax rates the project is not profitable, but the report judges the investment justified as a compliance measure.</li>
+  <li><strong>Safety was part of the design.</strong> Ammonia is hazardous, so the design included a moat around the tank, ammonia sensors with alarms that switch off the pumps, emergency showers and enclosed mixing and distribution modules.</li>
+  <li><strong>Recommendations.</strong> Measure temperature and uncontrolled NOx on site before tuning, and design for variations in load and fuel.</li>
+</ul></section>
+<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limitations</h2>
+<ul class="tight">
+  <li><strong>Idealised models.</strong> Perfect mixing, a fixed temperature profile and steady state make the SNCR results an upper bound; real furnaces have imperfect mixing and temperature variation, and real ammonia slip is likely to be higher.</li>
+  <li><strong>The 60% is an assumption.</strong> It is a conservative design value chosen from industrial experience, not a result the model produced.</li>
+  <li><strong>Thin plant data.</strong> The baseline came from models, with only one older plant measurement for comparison.</li>
+  <li><strong>High-level costs.</strong> The cost estimates are early-stage, and the report notes that some equipment costs are less accurate than the storage tank estimate.</li>
+  <li><strong>A design study.</strong> Nothing here was tested on the boiler.</li>
+</ul>
+<p class="takeaway"><strong>What I took from it.</strong> This was my first design project for an industry client. It taught me to work from incomplete plant data, state assumptions clearly, and give a recommendation a client can act on, including an honest note that the economics only work as a compliance cost.</p></section>
+<section id="evidence" aria-labelledby="evidence-h"><h2 id="evidence-h">Supporting evidence</h2>
+<p>This page summarises the team’s TKP4170 design report for NTNU. The report, the poster, the model code and the plant-specific inputs and outputs are not published here; one model trend is below.</p>
+<details class="more"><summary>Model trend: ammonia dose against reduction and slip</summary>
+<figure class="fig "><img src="/images/w/plot-of-no-reduction-and-ammonia-slip-against-640.webp" srcset="/images/w/plot-of-no-reduction-and-ammonia-slip-against-640.webp 640w, /images/w/plot-of-no-reduction-and-ammonia-slip-against-1280.webp 1280w" sizes="(min-width: 720px) 720px, 100vw" width="1400" height="930" alt="Plot of NO reduction and ammonia slip against the normalised stoichiometric ratio" loading="lazy" decoding="async" data-zoom="/images/w/plot-of-no-reduction-and-ammonia-slip-against-1280.webp"><figcaption>More ammonia removes more NO, but past a point the unreacted ammonia slipping through rises steeply. The design dose sits where reduction is high and slip is still low.</figcaption></figure>
+</details></section>
     <nav class="pager" aria-label="More projects">
-      <a class="prev" href="/projects/dft-orr-pt13/"><span class="eyebrow">Previous</span>Oxygen reduction on a 13-atom platinum cluster</a>
-      <a class="next" href="/projects/"><span class="eyebrow">Back to</span>All projects</a>
+      <a class="prev" href="/projects/loxim-effluent-treatment-study/"><span>Previous</span>A lower-cost treatment train for a high-sulphate effluent</a>
+      <a class="next" href="/projects/ntnu-synthesis-scale-up/"><span>Next</span>Reworking a catalyst synthesis after an ignition on the filter</a>
     </nav>
   </div>
 </div>
@@ -97,34 +134,33 @@
 </main>
 <footer class="site-foot" id="contact">
   <div class="wrap">
-    <div class="contact-grid">
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h2 class="contact-title">Let’s talk about catalysts, cells or process design</h2>
-        <p class="contact-lede">Questions about a project, a collaboration, or something you read here are all welcome. Email is the quickest way to reach me.</p>
+    <div class="titleblock">
+      <div class="tb-main">
+        <h2 class="tb-title">Get in touch</h2>
+        <p>If you work on catalysts, electrochemistry or process design, I’d be glad to connect. Questions about anything on this site are welcome too. Email is the quickest way to reach me.</p>
+        <div class="tb-actions">
+          <a class="btn btn-solid" href="mailto:ayush.suryawanshi0803@gmail.com">Email me</a>
+          <a class="btn btn-line" href="/Ayush_CV_revised.pdf" download="Ayush_CV.pdf"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>Download CV (PDF)</a>
+        </div>
       </div>
-      <div class="contact-actions">
-        <a class="btn btn-primary" href="mailto:ayush.suryawanshi0803@gmail.com">Email me <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
-        <a class="btn btn-ghost" href="/Ayush_CV_revised.pdf" download="Ayush_CV.pdf">Download CV (PDF) <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg></a>
-        <ul class="contact-list">
-          <li><span class="k">Email</span><a href="mailto:ayush.suryawanshi0803@gmail.com">ayush.suryawanshi0803@gmail.com</a></li>
-          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/ayush-suryawanshi" rel="me noopener" target="_blank">linkedin.com/in/ayush-suryawanshi</a></li>
-          <li><span class="k">Based in</span><span>Ahmedabad, India</span></li>
-        </ul>
-      </div>
+      <dl class="tb-cells">
+        <div><dt>Email</dt><dd><a href="mailto:ayush.suryawanshi0803@gmail.com">ayush.suryawanshi0803@gmail.com</a></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/ayush-suryawanshi" rel="me noopener" target="_blank">linkedin.com/in/ayush-suryawanshi</a></dd></div>
+        <div><dt>Based in</dt><dd>Ahmedabad, India</dd></div>
+        <div><dt>Sheet</dt><dd>Designing an SNCR retrofit for a biomass boiler</dd></div>
+        <div><dt>Drawn by</dt><dd>Ayush Suryawanshi</dd></div>
+        <div><dt>Revised</dt><dd><time datetime="2026-10-26">October 2026</time></dd></div>
+      </dl>
     </div>
-    <div class="foot-row">
-      <p>© 2026 Ayush Suryawanshi. Last updated October 2026.</p>
-      <p><a href="/">Home</a> · <a href="/projects/">Work</a> · <a href="/about/">About</a> · <a href="/cv/">CV</a></p>
-    </div>
+    <p class="foot-note">© 2026 Ayush Suryawanshi. <a href="/">Home</a> <a href="/projects/">Work</a> <a href="/about/">About</a> <a href="/cv/">CV</a></p>
   </div>
 </footer>
 <dialog class="lightbox" aria-label="Enlarged image">
-  <form method="dialog"><button class="lb-close" aria-label="Close">Close <kbd>Esc</kbd></button></form>
-  <img alt="">
+  <form method="dialog"><button class="lb-close" type="submit" aria-label="Close">Close <kbd>Esc</kbd></button></form>
+  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
   <p class="lb-cap"></p>
   <a class="lb-full" href="#" target="_blank" rel="noopener">Open full size in a new tab</a>
-  <div class="lb-nav"><button type="button" data-step="-1" aria-label="Previous image">←</button><button type="button" data-step="1" aria-label="Next image">→</button></div>
+  <div class="lb-nav"><button type="button" data-step="-1" aria-label="Previous image">‹</button><button type="button" data-step="1" aria-label="Next image">›</button></div>
 </dialog>
 </body>
 </html>
