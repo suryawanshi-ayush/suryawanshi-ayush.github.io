@@ -1,8 +1,8 @@
-# Ayush Suryawanshi, portfolio
+# Ayush Suryawanshi, portfolio (STAGING COPY)
 
-> Live site: https://suryawanshi-ayush.github.io/
-> Changes are tried first on the staging copy (https://github.com/suryawanshi-ayush/portfolio-staging,
-> preview at https://suryawanshi-ayush.github.io/portfolio-staging/) and then copied here.
+> Test copy of the live site at https://suryawanshi-ayush.github.io/ for trying changes before they go live.
+> Preview: https://suryawanshi-ayush.github.io/portfolio-staging/
+> This copy is kept out of search engines (`noindex` on every page and a block-all `robots.txt`).
 
 ## How the site is built
 
@@ -26,17 +26,29 @@ site.config.json    staging flag, base path and canonical origin
 Redesigned from scratch in October 2026 (the previous version is kept in the private repository
 `portfolio_n-1`, branch `staging-backup-2026-10-26`).
 
-- Identity: an engineering-drawing layout on a calm paper-and-ink palette. Light theme is warm paper, dark theme
-  soft charcoal (never pure black), the colours of the earlier site, which read more comfortably.
+- Identity: an engineering-drawing layout in the Fjord palette (October 2026), following a 60-30-10 split:
+  warm white (#faf8f4) as the base, deep teal (#0f5566) as the main colour and coral (#d9572b) as the accent,
+  with mustard as a third colour. Dark theme is deep teal-charcoal (#0e1b20), never pure black. Colour is part
+  of the structure: a tinted hero, tinted bands for the process flow and the timeline, and a deep teal footer card.
 - One bold element: on the home page the three areas of work (catalysis, electrochemistry, process
   engineering) are drawn as unit operations on a process-flow line, each linking to its projects. The
   footer is a drawing title block. Everything else stays quiet so the evidence reads first.
-- Colours per discipline are muted versions of the intro video's: catalysis violet, electrochemistry blue, process amber.
+- Colours per discipline match the intro video, which was re-rendered in the same palette: catalysis coral,
+  electrochemistry teal, process mustard.
 - Type: IBM Plex Serif for headings, Plex Sans for text, Plex Mono for tags and readings, as in the intro video.
 - Motion: only the flow line draws in once and charts fill when seen; nothing moves with reduced motion.
 - Accessibility: WCAG 2.1 AA checked with axe on every page, both themes, desktop and phone.
+- Performance (PageSpeed, Oct 2026): styles are minified and inlined in each page (no render-blocking request);
+  photos come in 240, 480, 640 and 1280 px WebP; the intro video plays the 720p file and switches to 1080p only in
+  full screen on a large display, and its silent autoplay starts after the page has loaded (never on data-saver or
+  2G connections). GitHub Pages sets a fixed 10-minute cache and no security headers, which cannot be changed there.
 - Disclosure: industry-linked work (SNCR, LOXIM) shows methods, trends, percentages and public limits only;
   plant data, absolute figures from partners, costs and reports stay off the site. See the notes in src/content.mjs.
+- Unpublished thesis (Oct 2026): the M.Tech thesis results appear in words and rounded ratios only (1.6x and 1.3x
+  retention vs commercial Pt/C, 1.4x peak mass activity, 2.5x peak current from the thinner ink), on the site, in the
+  public CV, in llms.txt and in the intro video (the two narrated sentences with exact figures were cut). No exact
+  values, data plots, compositions, recipes or operating conditions until the work is published; then restore them
+  with the DOI.
 
 Build after any change, then commit the source and the generated files together:
 
@@ -74,6 +86,28 @@ for search and AI crawlers, and fixes all links for the root path. Keep the live
 The two chart series were checked with a colour-vision-deficiency validator against both
 backgrounds: light `#2457C5` / `#C27C1A` on `#FFFFFF`, dark `#5F8BF0` / `#B77B26` on `#161B22`.
 
+## Visitor statistics (GoatCounter)
+
+The live site counts visits with [GoatCounter](https://www.goatcounter.com): no cookies, no personal data, no
+consent banner needed. It is switched on by one line in `site.config.json` on the live repo:
+
+```json
+"goatcounter": "your-goatcounter-code"
+```
+
+Leave it out (as on staging) and nothing is loaded. When it is on:
+
+- the counter script is self-hosted (`src/goatcounter.js`, ISC licence) and is not loaded at all for visitors
+  whose browser sends Do Not Track or Global Privacy Control;
+- page views, referrers, countries, browsers and screen sizes appear in the GoatCounter dashboard;
+- these actions are counted as anonymous events: `cv-download`, `email-click`, `linkedin-click`,
+  `intro-video-sound` and `intro-video-complete`;
+- links you share can carry a tag that shows up as the referrer, e.g. `https://suryawanshi-ayush.github.io/?ref=linkedin`
+  or `?ref=application-companyname`;
+- visit `https://suryawanshi-ayush.github.io/#toggle-goatcounter` once in each of your own browsers to stop
+  counting your own visits;
+- the footer says that visits are counted and how.
+
 ## CV
 
 The site links to `Ayush_CV_revised.pdf` (it downloads as `Ayush_CV.pdf`). It is generated from the content in
@@ -88,6 +122,3 @@ The earlier copy was patched on top of the original PDF, which left parts of the
 ATS parsers and text extraction; generating the whole document draws every line in reading order. Content follows
 the master resume of 23 Oct 2026 with the website's disclosure rules (no phone number, no LOXIM cost figures in
 rupees, no plant-specific SNCR figures). The build stops if an entry title wraps or a bullet runs past two lines.
-
-`Ayush_CV.pdf` is a copy of the same public CV, kept at the old address so earlier links keep working.
-`google2a67caef4377869e.html` is the Search Console verification file; keep it.

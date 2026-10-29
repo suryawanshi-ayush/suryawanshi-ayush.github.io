@@ -214,6 +214,12 @@
       if (e.key === ' ' || e.key === 'k') { e.preventDefault(); userToggle(); }
     });
 
+    // Anonymous event counts (only when the GoatCounter script is present): sound turned on, video watched to the end.
+    const countEvent = (path, title) => { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true }); };
+    let soundTracked = false;
+    v.addEventListener('volumechange', () => { if (!v.muted && !soundTracked) { soundTracked = true; countEvent('intro-video-sound', 'Intro video: sound on'); } });
+    v.addEventListener('ended', () => countEvent('intro-video-complete', 'Intro video: watched to the end'));
+
     // First "Watch with sound" restarts from the top so the visitor hears it all.
     soundPill.addEventListener('click', () => {
       v.muted = false;
@@ -232,7 +238,20 @@
       time.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`;
     });
 
+    // The page plays the 720p file (sharp at the size it is shown); full screen on a large display switches to 1080p,
+    // keeping the position and play state.
+    let hd = false;
+    const toHd = () => {
+      const src = v.dataset.hd;
+      if (hd || !src || window.screen.width * (window.devicePixelRatio || 1) < 1600) return;
+      hd = true;
+      const t = v.currentTime, wasPlaying = !v.paused;
+      v.src = src;
+      v.addEventListener('loadedmetadata', () => { v.currentTime = t; if (wasPlaying) play(); }, { once: true });
+      v.load();
+    };
     fsBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) toHd();
       if (document.fullscreenElement) document.exitFullscreen();
       else if (frame.requestFullscreen) frame.requestFullscreen().catch(() => {});
       else if (v.webkitEnterFullscreen) { if (track) track.mode = 'showing'; v.webkitEnterFullscreen(); }
@@ -248,13 +267,23 @@
     setSound();
     setState();
 
-    // Autoplay on arrival, unless the visitor asked for reduced motion or data saving.
-    const saveData = navigator.connection && navigator.connection.saveData;
-    const auto = !reduce.matches && !saveData;
-    if (auto) {
+    // Silent autoplay, started once the page itself has finished loading so the video never competes with the text,
+    // photos and fonts. No autoplay when the visitor asked for reduced motion or data saving, or is on a 2G connection.
+    const conn = navigator.connection || {};
+    const slow = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+    const auto = !reduce.matches && !slow;
+    let started = false;
+    const start = () => {
+      if (started || userPaused) return;
+      started = true;
       v.preload = 'auto';
       soundPill.hidden = false;
-      play();
+      if (inView && !document.hidden) play();
+    };
+    if (auto) {
+      const later = () => (window.requestIdleCallback ? requestIdleCallback(start, { timeout: 2500 }) : setTimeout(start, 800));
+      if (document.readyState === 'complete') later();
+      else window.addEventListener('load', later, { once: true });
     } else {
       big.hidden = false;
     }
@@ -264,12 +293,12 @@
       new IntersectionObserver((entries) => {
         inView = entries[0].isIntersecting;
         if (!inView && !v.paused) v.pause();
-        else if (inView && auto && v.paused && !v.ended && !userPaused) play();
+        else if (inView && auto && started && v.paused && !v.ended && !userPaused) play();
       }, { threshold: 0.35 }).observe(frame);
     }
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && !v.paused) v.pause();
-      else if (!document.hidden && inView && auto && v.paused && !v.ended && !userPaused) play();
+      else if (!document.hidden && inView && auto && started && v.paused && !v.ended && !userPaused) play();
     });
   });
 

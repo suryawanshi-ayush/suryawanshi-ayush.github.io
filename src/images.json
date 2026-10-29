@@ -4,6 +4,8 @@
   "w": 554,
   "h": 1200,
   "widths": [
+   240,
+   480,
    554
   ]
  },
@@ -12,6 +14,8 @@
   "w": 1600,
   "h": 1200,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -21,6 +25,8 @@
   "w": 1400,
   "h": 1049,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -30,6 +36,8 @@
   "w": 554,
   "h": 1200,
   "widths": [
+   240,
+   480,
    554
   ]
  },
@@ -38,6 +46,8 @@
   "w": 1400,
   "h": 821,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -47,6 +57,8 @@
   "w": 1400,
   "h": 892,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -56,14 +68,8 @@
   "w": 554,
   "h": 1200,
   "widths": [
-   554
-  ]
- },
- "ayush-suryawanshi-glass-cell-with-a-carbon-paper-electrode-and.jpg": {
-  "name": "glass-cell-with-a-carbon-paper-electrode-and",
-  "w": 554,
-  "h": 1200,
-  "widths": [
+   240,
+   480,
    554
   ]
  },
@@ -72,6 +78,8 @@
   "w": 554,
   "h": 1200,
   "widths": [
+   240,
+   480,
    554
   ]
  },
@@ -80,6 +88,8 @@
   "w": 1400,
   "h": 718,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -89,6 +99,8 @@
   "w": 1400,
   "h": 1052,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -98,6 +110,8 @@
   "w": 1900,
   "h": 1163,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -107,15 +121,8 @@
   "w": 1280,
   "h": 960,
   "widths": [
-   640,
-   1280
-  ]
- },
- "ayush-suryawanshi-photo-7d467c05.jpg": {
-  "name": "half-cell-electrodes-close-up",
-  "w": 1600,
-  "h": 739,
-  "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -125,6 +132,8 @@
   "w": 1600,
   "h": 739,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -134,6 +143,8 @@
   "w": 1400,
   "h": 930,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -143,6 +154,8 @@
   "w": 749,
   "h": 549,
   "widths": [
+   240,
+   480,
    640,
    749
   ]
@@ -152,6 +165,8 @@
   "w": 1351,
   "h": 563,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -161,6 +176,8 @@
   "w": 1600,
   "h": 1200,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
@@ -170,6 +187,8 @@
   "w": 800,
   "h": 1000,
   "widths": [
+   240,
+   480,
    640,
    800
   ]
@@ -179,48 +198,22 @@
   "w": 1280,
   "h": 591,
   "widths": [
+   240,
+   480,
    640,
    1280
   ]
  },
- "thesis-figure-retention-formic-acid.jpg": {
-  "name": "thesis-figure-retention-formic-acid",
-  "w": 3092,
-  "h": 2115,
+ "thesis-workflow-synthesis-testing-sem-banner.jpg": {
+  "name": "thesis-workflow-synthesis-testing-sem-banner",
+  "w": 2172,
+  "h": 720,
   "widths": [
+   240,
+   480,
    640,
    1280,
-   2000
-  ]
- },
- "thesis-figure-retention-with-aqsa.jpg": {
-  "name": "thesis-figure-retention-with-aqsa",
-  "w": 3072,
-  "h": 2115,
-  "widths": [
-   640,
-   1280,
-   2000
-  ]
- },
- "thesis-figure-xrd-high-bi.jpg": {
-  "name": "thesis-figure-xrd-high-bi",
-  "w": 2909,
-  "h": 2032,
-  "widths": [
-   640,
-   1280,
-   2000
-  ]
- },
- "thesis-figure-xrd-low-bi.jpg": {
-  "name": "thesis-figure-xrd-low-bi",
-  "w": 2909,
-  "h": 2032,
-  "widths": [
-   640,
-   1280,
-   2000
+   2172
   ]
  }
 }

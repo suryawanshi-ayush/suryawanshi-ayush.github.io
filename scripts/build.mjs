@@ -29,12 +29,38 @@ const asset = (name) => {
   return url(`assets/${base}.${hash}.${ext}`);
 };
 // Fonts (IBM Plex Serif, Sans and Mono) are self-hosted from fonts/ (SIL Open Font License), so no third-party requests are made.
-// The stylesheet refers to them relative to assets/, i.e. ../fonts/.
-const CSS = asset('site.css');
+// The stylesheet is small (about 13 KB compressed), so it is minified and placed inside each page: the browser can
+// draw the page without waiting for a separate request. Its font paths (../fonts/) are rewritten for that.
+const minifyCss = (css) =>
+  css
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s*([{};,>])\s*/g, '$1')
+    .replace(/;}/g, '}')
+    .trim();
+const CSS_INLINE = minifyCss(readFileSync(ROOT + 'src/site.css', 'utf8')).replace(/url\("\.\.\/fonts\//g, `url("${url('fonts/')}`);
 const JS = asset('site.js');
 
+/* ---------- visitor analytics (optional, off unless site.config.json sets "goatcounter") ---------- */
+// GoatCounter counts page views without cookies or personal data, so no consent banner is needed.
+// The counter script (ISC licence, src/goatcounter.js) is self-hosted and only loads when the visitor's browser
+// does not send Do Not Track or Global Privacy Control. Staging keeps it off so test visits are not counted.
+const GC = config.goatcounter ? `https://${config.goatcounter}.goatcounter.com/count` : '';
+const GC_JS = GC ? asset('goatcounter.js') : '';
+const ANALYTICS = GC
+  ? `<script>(function(){var n=navigator;if(n.doNotTrack==='1'||window.doNotTrack==='1'||n.globalPrivacyControl===true)return;var s=document.createElement('script');s.async=true;s.src='${GC_JS}';s.setAttribute('data-goatcounter','${GC}');document.head.appendChild(s);})();</script>\n`
+  : '';
+// Anonymous counts of the actions that matter (no visitor details): CV downloads, email and LinkedIn clicks.
+const tagEvents = (html) =>
+  !GC
+    ? html
+    : html
+        .replace(/<a ([^>]*)download="Ayush_CV\.pdf"/g, '<a $1download="Ayush_CV.pdf" data-goatcounter-click="cv-download" data-goatcounter-title="CV downloaded"')
+        .replace(/<a ([^>]*)href="mailto:/g, '<a $1data-goatcounter-click="email-click" data-goatcounter-title="Email link clicked" href="mailto:')
+        .replace(/<a ([^>]*)href="https:\/\/www\.linkedin\.com\/in\/ayush-suryawanshi"/g, '<a $1data-goatcounter-click="linkedin-click" data-goatcounter-title="LinkedIn link clicked" href="https://www.linkedin.com/in/ayush-suryawanshi"');
+
 const ICON = `data:image/svg+xml,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 3 57 17.5v29L32 61 7 46.5v-29z" fill="#15191F"/><text x="32" y="40" font-family="Georgia,serif" font-size="22" fill="#F7F6F2" text-anchor="middle">AS</text></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 3 57 17.5v29L32 61 7 46.5v-29z" fill="#0F5566"/><text x="32" y="40" font-family="Georgia,serif" font-size="22" fill="#FFFFFF" text-anchor="middle">AS</text></svg>',
 )}`;
 
 // Old single-page links such as /#/project/x or /#/cv keep working.
@@ -146,7 +172,8 @@ function footer(sheet) {
         <div><dt>Revised</dt><dd><time datetime="${person.updatedISO}">${person.updated}</time></dd></div>
       </dl>
     </div>
-    <p class="foot-note">© 2026 ${person.name}. <a href="${url()}">Home</a> <a href="${url('projects/')}">Work</a> <a href="${url('about/')}">About</a> <a href="${url('cv/')}">CV</a></p>
+    <p class="foot-note">© 2026 ${person.name}. <a href="${url()}">Home</a> <a href="${url('projects/')}">Work</a> <a href="${url('about/')}">About</a> <a href="${url('cv/')}">CV</a></p>${GC ? `
+    <p class="foot-note privacy">Visits are counted anonymously with <a href="https://www.goatcounter.com/help/gdpr" rel="noopener" target="_blank">GoatCounter</a>: no cookies, no personal data, and nothing is counted if your browser asks not to be tracked.</p>` : ''}
   </div>
 </footer>
 <dialog class="lightbox" aria-label="Enlarged image">
@@ -162,7 +189,7 @@ function page({ path, title, description, active, sheet, body, jsonld = [], imag
   const canonical = liveUrl(path);
   const ogImage = liveUrl(image || 'images/portrait-of-ayush-suryawanshi.jpg');
   const robots = config.staging ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1';
-  return `<!DOCTYPE html>
+  return tagEvents(`<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -174,8 +201,8 @@ ${THEME_INIT}
 <meta name="robots" content="${robots}">${config.staging ? '<!-- STAGING COPY: kept out of search. The live build uses index, follow. -->' : ''}
 <link rel="canonical" href="${canonical}">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F7F6F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111419" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1B20" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="${ICON}">
 <meta property="og:type" content="${path === '' ? 'profile' : 'article'}">
 <meta property="og:site_name" content="${person.name}">
@@ -190,9 +217,9 @@ ${THEME_INIT}
 <meta name="twitter:image" content="${ogImage}">
 <link rel="preload" href="${url('fonts/ibm-plex-sans-latin-400.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${url('fonts/ibm-plex-serif-latin-400.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${CSS}">
+<style>${CSS_INLINE}</style>
 <script src="${JS}" defer></script>
-${extraHead}${jsonld.length ? ld(jsonld) : ''}
+${ANALYTICS}${extraHead}${jsonld.length ? ld(jsonld) : ''}
 </head>
 <body class="${bodyClass}">
 ${header(active)}
@@ -202,7 +229,7 @@ ${body}
 ${footer(sheet || strip(title).split(' – ')[0])}
 </body>
 </html>
-`;
+`);
 }
 
 /* ---------- card visuals ---------- */
@@ -229,7 +256,7 @@ const stat = ([v, k]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`;
 /* ---------- intro video (home hero) ---------- */
 // Plays muted on arrival, with captions drawn by site.js so they stay readable on phones.
 // Without JavaScript the native controls and the caption track still work.
-const INTRO = { seconds: 99, label: '1:39', uploaded: '2026-10-26' };
+const INTRO = { seconds: 94, label: '1:34', uploaded: '2026-10-29' };
 const ICON_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-pause" d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>';
 const ICON_SOUND = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="i-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="i-off" d="m15.5 9.5 5 5m0-5-5 5"/></svg>';
 const ICON_CC = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M10.5 10.3a2.3 2.3 0 1 0 0 3.4M17 10.3a2.3 2.3 0 1 0 0 3.4"/></svg>';
@@ -237,10 +264,9 @@ const ICON_FS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M2
 function introVideo() {
   return `<figure class="intro-video" aria-labelledby="iv-title">
       <div class="iv-frame" data-state="idle">
-        <video class="iv-video" muted playsinline preload="metadata" controls width="1920" height="1080"
-          poster="${url('media/intro-poster.webp')}" aria-describedby="iv-desc">
-          <source src="${url('media/intro-720p.mp4')}" type="video/mp4" media="(max-width: 767px)">
-          <source src="${url('media/intro-1080p.mp4')}" type="video/mp4">
+        <video class="iv-video" muted playsinline preload="none" controls width="1920" height="1080"
+          poster="${url('media/intro-poster.webp')}" aria-describedby="iv-desc" data-hd="${url('media/intro-1080p.mp4')}">
+          <source src="${url('media/intro-720p.mp4')}" type="video/mp4">
           <track kind="captions" src="${url('media/intro.en.vtt')}" srclang="en" label="English" default>
         </video>
         <p class="iv-caption" aria-hidden="true"></p>
@@ -334,20 +360,20 @@ function home() {
     </div>
 
     <article class="feature">
-      <a class="feature-media" href="${projectUrl(thesis.slug)}" tabindex="-1" aria-hidden="true">${img(thesis.hero[0], thesis.hero[1], { sizes: '(min-width: 1200px) 1180px, 100vw', pos: '60% 50%' })}</a>
+      <a class="feature-media" href="${projectUrl(thesis.slug)}" tabindex="-1" aria-hidden="true">${img(thesis.hero[0], thesis.hero[1], { sizes: '(min-width: 1200px) 1180px, 100vw', pos: '50% 50%' })}</a>
       <div class="feature-body">
         <div class="fb-text">
           ${tags(thesis.kind)}
           <h3><a href="${projectUrl(thesis.slug)}">${thesis.title}</a></h3>
-          <p>For my M.Tech thesis I modified commercial Pt/C with small amounts of bismuth to resist carbon monoxide poisoning during formic acid oxidation, and tested a quinone mediator. The catalyst with the least bismuth held its current best; the mediator lowered one-hour retention.</p>
+          <p>For my M.Tech thesis I modified commercial Pt/C with small amounts of bismuth to resist carbon monoxide poisoning in formic acid fuel cells, and tested a quinone mediator. Over a one-hour hold, the lowest-bismuth catalyst kept about 1.6 times the share of its starting current that commercial Pt/C kept, and the results mapped a clear trade-off between peak activity and durability.</p>
           <a class="btn btn-line" href="${projectUrl(thesis.slug)}">Read the thesis project</a>
         </div>
         <div class="fb-data">
           <dl class="readings">
-            <div><dt>Bi(1.25)-Pt/C, current kept after a one-hour hold</dt><dd>92.9%</dd></div>
-            <div><dt>Commercial Pt/C, same test</dt><dd>58.5%</dd></div>
+            <div><dt>current retention vs commercial Pt/C after a one-hour hold</dt><dd>1.6×</dd></div>
+            <div><dt>peak mass activity, most active vs most durable catalyst</dt><dd>1.4×</dd></div>
           </dl>
-          <p class="note">Three-electrode half-cell results in acid, relative to each catalyst’s own current after the first minute, so they measure decay rather than output. No replicate counts are reported.</p>
+          <p class="note">Rounded ratios from unpublished M.Tech research: exact values and data plots are held back until publication, and I am happy to walk through them in an interview.</p>
         </div>
       </div>
     </article>
@@ -726,32 +752,41 @@ out(
         .join('\n')}\nSitemap: ${liveUrl('sitemap.xml')}\n`,
 );
 
-// Plain-text profile for AI assistants, generated from the same content as the pages.
+// Plain-text profile for AI assistants (llms.txt format: H1, summary blockquote, plain details, then H2 sections
+// that list links), generated from the same content as the pages.
 out(
   'llms.txt',
   `# ${person.name}
 
 > ${person.name} is an Indian chemical engineer working across catalysis, electrochemistry and process engineering. Ayush holds an M.Tech in Catalysis Technology from IIT Madras (2026, CGPA 8.51/10), spent a research semester at NTNU, Norway (2025), and has been a Management Trainee at LOXIM Industries Ltd., Ahmedabad, since July 2026. The work spans catalyst synthesis and characterisation, electrode preparation and three-electrode electrochemical testing, DFT and reaction-kinetics modelling, process design and costing, and effluent treatment.
 
-Website: ${liveUrl()}
-LinkedIn: ${person.linkedin}
-Email: ${person.email}
-CV (PDF): ${liveUrl(person.cv)}
+Contact: ${person.email} · LinkedIn: ${person.linkedin}
 
-## Education
+**Education**
 ${education.map((e) => `- ${e.title}, ${e.org}, ${e.when}. ${e.detail}`).join('\n')}
 
-## Experience
+**Experience**
 ${experience.map((e) => `- ${e.title}, ${e.org} (${e.when}): ${e.points.join(' ')}`).join('\n')}
 
-## Projects
-${projects.map((p) => `- ${strip(p.title)} (${p.when}, ${strip(p.where)}): ${p.glance.map(([k, v]) => `${k}: ${strip(v)}`).join(' ')} Details: ${liveUrl(`projects/${p.slug}/`)}`).join('\n')}
+**Skills**
+${skillEvidence.map((g) => g.rows.map(([k, v]) => `- ${k}: ${strip(v)}`).join('\n')).join('\n')}
 
-## Skills
-${skillEvidence.map((g) => `### ${g.title}\n${g.rows.map(([k, v]) => `- ${k}: ${strip(v)}`).join('\n')}`).join('\n\n')}
-
-## Conferences, awards and scholarships
+**Conferences, awards and scholarships**
 ${recognition.map((r) => `- ${r.title}, ${r.where} (${r.when})`).join('\n')}
+
+## Pages
+- [Home](${liveUrl()}): Overview of the three areas of work, selected projects and a short video introduction
+- [Work](${liveUrl('projects/')}): All projects, filterable by catalysis, electrochemistry, process engineering and modelling
+- [About](${liveUrl('about/')}): Background, education, experience and the path from B.Tech to industry
+- [CV](${liveUrl('cv/')}): Curriculum vitae as a web page
+- [CV (PDF)](${liveUrl(person.cv)}): Downloadable CV
+
+## Projects
+${projects.map((p) => `- [${strip(p.title)}](${liveUrl(`projects/${p.slug}/`)}): ${strip(p.short)} (${p.when}, ${strip(p.where)})`).join('\n')}
+
+## Optional
+- [LinkedIn](${person.linkedin}): Professional profile
+- [Sitemap](${liveUrl('sitemap.xml')}): All pages of the site
 `,
 );
 

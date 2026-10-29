@@ -2,30 +2,19 @@
 
 > Ayush Suryawanshi is an Indian chemical engineer working across catalysis, electrochemistry and process engineering. Ayush holds an M.Tech in Catalysis Technology from IIT Madras (2026, CGPA 8.51/10), spent a research semester at NTNU, Norway (2025), and has been a Management Trainee at LOXIM Industries Ltd., Ahmedabad, since July 2026. The work spans catalyst synthesis and characterisation, electrode preparation and three-electrode electrochemical testing, DFT and reaction-kinetics modelling, process design and costing, and effluent treatment.
 
-Website: https://suryawanshi-ayush.github.io/
-LinkedIn: https://www.linkedin.com/in/ayush-suryawanshi
-Email: ayush.suryawanshi0803@gmail.com
-CV (PDF): https://suryawanshi-ayush.github.io/Ayush_CV_revised.pdf
+Contact: ayush.suryawanshi0803@gmail.com · LinkedIn: https://www.linkedin.com/in/ayush-suryawanshi
 
-## Education
+**Education**
 - M.Tech, Catalysis Technology, Department of Chemical Engineering, IIT Madras, Chennai, Jun 2024 – May 2026. CGPA 8.51/10. Degree conferred at the 63rd convocation, 17 July 2026.
 - Semester exchange, Department of Chemical Engineering, NTNU, Trondheim, Norway, Aug – Dec 2025. UTFORSK mobility scholarship. Thesis catalyst synthesis in the KinCat group, hosted and supervised by Prof. Edd Anders Blekkan.
 - B.Tech, Chemical Engineering, Indore Institute of Science and Technology, affiliated to RGPV Bhopal, 2019 – 2023. CGPA 8.17/10, First Division with Honours.
 - Senior School Certificate (Class XII, CBSE), Delhi Public School, Chhindwara, 2019. 84.2%.
 
-## Experience
+**Experience**
 - Management Trainee, LOXIM Industries Ltd., Ahmedabad (Jul 2026 – present): Led a two-month study on a high-sulphate dye effluent: mapped where the treatment cost goes, compared electrochemical, membrane and crystallisation routes with suppliers, and proposed a treatment train that recovers the waste salt as a product, at about two-thirds lower modelled operating cost. Evaluated electrocoagulation and electroflocculation as pretreatment options. Ran screening, sample trials and feasibility checks with more than ten technology vendors; handed the study over with a validation roadmap for further evaluation. Trained on HPLC, GC-MS, FTIR and UV-Vis; completed plant safety induction and HSE training.
 - Deputy Placement and Internship Coordinator, Placement and Internship Cell, IIT Madras (Aug 2024 – Jul 2025): Handled placements and internships for the 2023–25 and 2024–26 M.Tech batches; 75% of M.Tech chemical engineers were placed.
 
-## Projects
-- Keeping platinum clean in formic acid fuel cells (May 2025 – May 2026, IIT Madras, with synthesis at NTNU, Norway): Problem: Platinum oxidises formic acid well at first, but adsorbed CO builds up and the current falls within an hour. My contribution: Made and characterised four Bi-modified Pt/C catalysts, tuned the catalyst ink, and tested them with and without a quinone mediator (AQSA) in a three-electrode half-cell. Key result: Bi(1.25)-Pt/C, with the least bismuth, retained 92.9% of its current over a one-hour hold, against 58.5% for commercial Pt/C. The mediator did not improve retention. Limits: Half-cell, acid, one hour. No replicate counts or error bars are reported, and there is no membrane electrode assembly or full-cell test yet. Details: https://suryawanshi-ayush.github.io/projects/thesis-bi-pt-formic-acid/
-- A lower-cost treatment train for a high-sulphate effluent (2026, two months, LOXIM Industries Ltd., Ahmedabad): Problem: A high-sulphate dye effluent had to be treated at a running cost, and its sulphate left the plant as a waste salt. Where does that cost go, and can the salt become a product? My contribution: Led a two-month study: built the cost baseline, screened electrochemical, membrane and crystallisation routes with more than ten vendors, simulated the proposed train in DWSIM and modelled its operating cost stage by stage. Key result: A proposed treatment train that recovers sodium sulphate as a product, at about two-thirds lower modelled operating cost than the current treatment (cost index 100 to about 36). Limits: A desk and supplier study. The cost comparison covers quantified items only, and bench validation is still pending; the study was handed over for further evaluation. Details: https://suryawanshi-ayush.github.io/projects/loxim-effluent-treatment-study/
-- Designing an SNCR retrofit for a biomass boiler (Aug – Nov 2025, NTNU, Trondheim): Problem: An upgraded biomass boiler must stay under the 300 mg/Nm³ NOx limit, and its modelled uncontrolled NOx sat around that limit. Could an SNCR retrofit give a safe margin, and at what cost? My contribution: Carried out the literature survey, built the Python (Cantera) combustion and SNCR kinetic models, did the hand calculations for the design basis and contributed the Aspen HYSYS simulation. Presented the poster in Oslo. Key result: With a conservative design reduction of about 60% (the ideal model gave above 90%), modelled emissions fall well under the limit. Capital and running costs were estimated: not profitable at current NOx tax, but justified as a compliance cost. Limits: Idealised model (perfect mixing, fixed temperature profile), very limited plant data for comparison, and a design study rather than a plant trial. On-site measurement was recommended. Details: https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/
-- Reworking a catalyst synthesis after an ignition on the filter (Aug – Dec 2025, KinCat group, Department of Chemical Engineering, NTNU, Trondheim): Problem: Following the literature procedure recovered very little catalyst, and the scaled-up second batch ignited on the filter. My contribution: Ran the three batches and changed the route after each one: an aqueous borohydride step, less reductant and a changed filtration. Key result: No ignition was observed in Batch 3, which also gave the highest recovered mass, about 220 mg, with uniform SEM morphology. Limits: Three batches, with a mass reported only for Batch 3. This does not validate scale-up, and no activity data are reported for the individual batches. Details: https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/
-- Oxygen reduction on a 13-atom platinum cluster (Jan – May 2025, IIT Madras): Problem: Oxygen reduction limits fuel cell cathodes. How do its intermediates sit on a small Pt cluster, and is each step favourable in electronic energy? My contribution: Individual course project: built, optimised and checked the Pt13 structures and the adsorbed intermediates in Gaussian 16 and tabulated the step energies. Key result: All four tabulated step energies are negative (−1.85 to −3.90 eV, electronic energies), and all optimised structures are true minima. Limits: Gas-phase electronic energies only: no zero-point, thermal or entropy corrections, so not free energies, and no transition states, so no barriers, rates or activity predictions. Details: https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/
-
-## Skills
-### Used in project work
+**Skills**
 - Electrochemical testing: Autolab potentiostat with NOVA, three-electrode cell, cyclic voltammetry, chronoamperometry, ECSA, one-hour durability holds
 - Electrodes and catalysts: Wet-chemical catalyst modification, catalyst ink formulation and Nafion loading, drop-cast electrodes on glassy carbon and carbon paper
 - Characterisation: FE-SEM with EDX, powder XRD, BET: reading and interpreting the results
@@ -33,24 +22,36 @@ CV (PDF): https://suryawanshi-ayush.github.io/Ayush_CV_revised.pdf
 - Kinetic modelling and process design: Python with Cantera, Aspen HYSYS, Excel, mass and energy balances; capital and running-cost estimates (team project)
 - Data analysis: OriginPro
 - Handling hazards in the lab: Acids, sodium borohydride, inert-gas (nitrogen and argon) work
-
-### From the current job
 - Analytical instruments: HPLC, GC-MS, FTIR and UV-Vis: training
 - Plant safety: Plant HSE induction and SOP training
 - Technology selection and process economics: Supplier screening, sample trials and feasibility checks; DWSIM simulation and a stage-wise operating-cost model
-
-### From coursework
 - XPS: Analysed XPS data in M.Tech coursework
 - Courses: M.Tech: Advanced Chemical Engineering Thermodynamics, Chemical Reactor Theory, Transport Phenomena, Experimental Methods in Catalysis, Catalyst Preparation and Characterization Lab, Computational Methods in Catalysis. B.Tech: Material and Energy Balance, Chemical Reaction Engineering, Heat and Mass Transfer, Process Equipment Design, Chemical Process Modeling and Simulation, Process Safety and Hazards Management, Process Plant Economics and Management
 - Process simulation: CHEMCAD in B.Tech process simulation labs; DWSIM, self-taught and used in the LOXIM study
-
-### Also on my CV, not used in the projects shown
 - Methods: Linear sweep voltammetry, electrochemical impedance spectroscopy, chronopotentiometry, TGA
 
-## Conferences, awards and scholarships
+**Conferences, awards and scholarships**
 - Poster on SNCR NOx reduction, Treforedlingsforum 2025, Oslo, Norway (Nov 2025)
 - Attended EuropaCat 2025, the European catalysis congress, Trondheim, Norway (2025)
 - UTFORSK mobility scholarship, NTNU, for a research semester in Norway (2025)
 - GIAN course on characterisation of heterogeneous catalysts, IIT Madras (Apr – May 2025)
 - GATE 2024, Chemical Engineering: All India Rank 864, Out of 13,937 candidates (Feb 2024)
 - Paper presentation, SCHEMCON 2021, MANIT and IISER Bhopal (Oct 2021)
+
+## Pages
+- [Home](https://suryawanshi-ayush.github.io/): Overview of the three areas of work, selected projects and a short video introduction
+- [Work](https://suryawanshi-ayush.github.io/projects/): All projects, filterable by catalysis, electrochemistry, process engineering and modelling
+- [About](https://suryawanshi-ayush.github.io/about/): Background, education, experience and the path from B.Tech to industry
+- [CV](https://suryawanshi-ayush.github.io/cv/): Curriculum vitae as a web page
+- [CV (PDF)](https://suryawanshi-ayush.github.io/Ayush_CV_revised.pdf): Downloadable CV
+
+## Projects
+- [Keeping platinum clean in formic acid fuel cells](https://suryawanshi-ayush.github.io/projects/thesis-bi-pt-formic-acid/): Bi-modified Pt/C catalysts and a quinone mediator, tested for how long they hold their current. (May 2025 – May 2026, IIT Madras, with synthesis at NTNU, Norway)
+- [A lower-cost treatment train for a high-sulphate effluent](https://suryawanshi-ayush.github.io/projects/loxim-effluent-treatment-study/): A two-month study: where the treatment cost of a dye effluent goes, which routes could replace it, and a proposed train that recovers the waste salt as a product. (2026, two months, LOXIM Industries Ltd., Ahmedabad)
+- [Designing an SNCR retrofit for a biomass boiler](https://suryawanshi-ayush.github.io/projects/sncr-biomass-boiler/): A four-person design study: can selective non-catalytic reduction bring a biomass boiler under its NOx limit, and at what cost? (Aug – Nov 2025, NTNU, Trondheim)
+- [Reworking a catalyst synthesis after an ignition on the filter](https://suryawanshi-ayush.github.io/projects/ntnu-synthesis-scale-up/): Three batches of Bi-modified Pt/C: a low-yield first batch, an ignition in the second, and a changed aqueous route with no ignition observed. (Aug – Dec 2025, KinCat group, Department of Chemical Engineering, NTNU, Trondheim)
+- [Oxygen reduction on a 13-atom platinum cluster](https://suryawanshi-ayush.github.io/projects/dft-orr-pt13/): A DFT study of the intermediates of the four-electron oxygen reduction pathway on Pt13. (Jan – May 2025, IIT Madras)
+
+## Optional
+- [LinkedIn](https://www.linkedin.com/in/ayush-suryawanshi): Professional profile
+- [Sitemap](https://suryawanshi-ayush.github.io/sitemap.xml): All pages of the site
